@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C83AE59715CB851B0093D5F7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83AE59615CB851B0093D5F7 /* Cocoa.framework */; };
+		C83AE5A115CB851B0093D5F7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C83AE59F15CB851B0093D5F7 /* InfoPlist.strings */; };
+		C83AE5A315CB851B0093D5F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C83AE5A215CB851B0093D5F7 /* main.m */; };
+		C83AE5AA15CB851B0093D5F7 /* QMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C83AE5A915CB851B0093D5F7 /* QMAppDelegate.m */; };
+		C83AE5AD15CB851B0093D5F7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C83AE5AB15CB851B0093D5F7 /* MainMenu.xib */; };
+		C83AE5C715CB886E0093D5F7 /* Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C83AE5C615CB886E0093D5F7 /* Icon.jpg */; };
+		C85CA14D15CC80FA00ACB134 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CA14415CC80FA00ACB134 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C85CA14E15CC80FA00ACB134 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CA14615CC80FA00ACB134 /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C85CA14F15CC80FA00ACB134 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CA14815CC80FA00ACB134 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C85CA15015CC80FA00ACB134 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CA14A15CC80FA00ACB134 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C85CA15115CC80FA00ACB134 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CA14C15CC80FA00ACB134 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C894E8B41637162D0055F66A /* smslib.m in Sources */ = {isa = PBXBuildFile; fileRef = C894E8B21637162D0055F66A /* smslib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C894E8B61637172A0055F66A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C894E8B51637172A0055F66A /* IOKit.framework */; };
+		C89D4BA7163765DC004EDE38 /* FXWilhelm.caf in Resources */ = {isa = PBXBuildFile; fileRef = C89D4BA6163765DC004EDE38 /* FXWilhelm.caf */; };
+		C8B8C93216372537009B9876 /* QMLightSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B8C93116372537009B9876 /* QMLightSensor.m */; };
+		C8C421CF162F369A0097C124 /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C421CE162F369A0097C124 /* ImageSnap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C8C421D5162F3B580097C124 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C421D4162F3B580097C124 /* QTKit.framework */; };
+		C8C421D7162F3B710097C124 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C421D6162F3B710097C124 /* Quartz.framework */; };
+		C8C421D9162F3B810097C124 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C421D8162F3B810097C124 /* CoreFoundation.framework */; };
+		C8F39355163B2186004B47AA /* FXTam.caf in Resources */ = {isa = PBXBuildFile; fileRef = C8F39350163B2186004B47AA /* FXTam.caf */; };
+		C8F39356163B2186004B47AA /* FXToms.caf in Resources */ = {isa = PBXBuildFile; fileRef = C8F39351163B2186004B47AA /* FXToms.caf */; };
+		C8F39357163B2186004B47AA /* FXSnare.caf in Resources */ = {isa = PBXBuildFile; fileRef = C8F39352163B2186004B47AA /* FXSnare.caf */; };
+		C8F39358163B2186004B47AA /* FXKick.caf in Resources */ = {isa = PBXBuildFile; fileRef = C8F39353163B2186004B47AA /* FXKick.caf */; };
+		C8F39359163B2186004B47AA /* FXHihat.caf in Resources */ = {isa = PBXBuildFile; fileRef = C8F39354163B2186004B47AA /* FXHihat.caf */; };
+		C8F3935B163B3357004B47AA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83AE59915CB851B0093D5F7 /* AppKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C83AE59215CB851B0093D5F7 /* Telepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83AE59615CB851B0093D5F7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C83AE59915CB851B0093D5F7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C83AE59A15CB851B0093D5F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C83AE59B15CB851B0093D5F7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C83AE59E15CB851B0093D5F7 /* Telepath-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Telepath-Info.plist"; sourceTree = "<group>"; };
+		C83AE5A015CB851B0093D5F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C83AE5A215CB851B0093D5F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C83AE5A415CB851B0093D5F7 /* Telepath-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Telepath-Prefix.pch"; sourceTree = "<group>"; };
+		C83AE5A815CB851B0093D5F7 /* QMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMAppDelegate.h; sourceTree = "<group>"; };
+		C83AE5A915CB851B0093D5F7 /* QMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMAppDelegate.m; sourceTree = "<group>"; };
+		C83AE5AC15CB851B0093D5F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C83AE5C615CB886E0093D5F7 /* Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Icon.jpg; sourceTree = "<group>"; };
+		C85CA14215CC80FA00ACB134 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		C85CA14315CC80FA00ACB134 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		C85CA14415CC80FA00ACB134 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		C85CA14515CC80FA00ACB134 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		C85CA14615CC80FA00ACB134 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		C85CA14715CC80FA00ACB134 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		C85CA14815CC80FA00ACB134 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		C85CA14915CC80FA00ACB134 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		C85CA14A15CC80FA00ACB134 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		C85CA14B15CC80FA00ACB134 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		C85CA14C15CC80FA00ACB134 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C894E8B21637162D0055F66A /* smslib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = smslib.m; sourceTree = "<group>"; };
+		C894E8B31637162D0055F66A /* smslib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smslib.h; sourceTree = "<group>"; };
+		C894E8B51637172A0055F66A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		C89D4BA6163765DC004EDE38 /* FXWilhelm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FXWilhelm.caf; path = Resources/FXWilhelm.caf; sourceTree = "<group>"; };
+		C8B8C93016372537009B9876 /* QMLightSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QMLightSensor.h; path = Classes/QMLightSensor.h; sourceTree = "<group>"; };
+		C8B8C93116372537009B9876 /* QMLightSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QMLightSensor.m; path = Classes/QMLightSensor.m; sourceTree = "<group>"; };
+		C8C421CD162F369A0097C124 /* ImageSnap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSnap.h; path = Classes/ImageSnap.h; sourceTree = "<group>"; };
+		C8C421CE162F369A0097C124 /* ImageSnap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageSnap.m; path = Classes/ImageSnap.m; sourceTree = "<group>"; };
+		C8C421D4162F3B580097C124 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		C8C421D6162F3B710097C124 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		C8C421D8162F3B810097C124 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		C8F39350163B2186004B47AA /* FXTam.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FXTam.caf; path = Resources/FXTam.caf; sourceTree = "<group>"; };
+		C8F39351163B2186004B47AA /* FXToms.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FXToms.caf; path = Resources/FXToms.caf; sourceTree = "<group>"; };
+		C8F39352163B2186004B47AA /* FXSnare.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FXSnare.caf; path = Resources/FXSnare.caf; sourceTree = "<group>"; };
+		C8F39353163B2186004B47AA /* FXKick.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FXKick.caf; path = Resources/FXKick.caf; sourceTree = "<group>"; };
+		C8F39354163B2186004B47AA /* FXHihat.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FXHihat.caf; path = Resources/FXHihat.caf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C83AE58F15CB851B0093D5F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8F3935B163B3357004B47AA /* AppKit.framework in Frameworks */,
+				C894E8B61637172A0055F66A /* IOKit.framework in Frameworks */,
+				C8C421D9162F3B810097C124 /* CoreFoundation.framework in Frameworks */,
+				C8C421D7162F3B710097C124 /* Quartz.framework in Frameworks */,
+				C8C421D5162F3B580097C124 /* QTKit.framework in Frameworks */,
+				C83AE59715CB851B0093D5F7 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C83AE58715CB851B0093D5F7 = {
+			isa = PBXGroup;
+			children = (
+				C83AE5C615CB886E0093D5F7 /* Icon.jpg */,
+				C83AE59C15CB851B0093D5F7 /* Telepath */,
+				C89D4BA4163765D1004EDE38 /* Resources */,
+				C83AE59515CB851B0093D5F7 /* Frameworks */,
+				C83AE59315CB851B0093D5F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C83AE59315CB851B0093D5F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C83AE59215CB851B0093D5F7 /* Telepath.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C83AE59515CB851B0093D5F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C894E8B51637172A0055F66A /* IOKit.framework */,
+				C83AE59615CB851B0093D5F7 /* Cocoa.framework */,
+				C8C421D4162F3B580097C124 /* QTKit.framework */,
+				C8C421D6162F3B710097C124 /* Quartz.framework */,
+				C8C421D8162F3B810097C124 /* CoreFoundation.framework */,
+				C83AE59815CB851B0093D5F7 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C83AE59815CB851B0093D5F7 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C83AE59915CB851B0093D5F7 /* AppKit.framework */,
+				C83AE59A15CB851B0093D5F7 /* CoreData.framework */,
+				C83AE59B15CB851B0093D5F7 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C83AE59C15CB851B0093D5F7 /* Telepath */ = {
+			isa = PBXGroup;
+			children = (
+				C8C421CB162F367B0097C124 /* Classes */,
+				C83AE5A815CB851B0093D5F7 /* QMAppDelegate.h */,
+				C83AE5A915CB851B0093D5F7 /* QMAppDelegate.m */,
+				C83AE5AB15CB851B0093D5F7 /* MainMenu.xib */,
+				C83AE59D15CB851B0093D5F7 /* Supporting Files */,
+			);
+			path = Telepath;
+			sourceTree = "<group>";
+		};
+		C83AE59D15CB851B0093D5F7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C85CA14115CC80FA00ACB134 /* Json */,
+				C83AE59E15CB851B0093D5F7 /* Telepath-Info.plist */,
+				C83AE59F15CB851B0093D5F7 /* InfoPlist.strings */,
+				C83AE5A215CB851B0093D5F7 /* main.m */,
+				C83AE5A415CB851B0093D5F7 /* Telepath-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C85CA14115CC80FA00ACB134 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				C85CA14215CC80FA00ACB134 /* JSON.h */,
+				C85CA14315CC80FA00ACB134 /* NSObject+SBJSON.h */,
+				C85CA14415CC80FA00ACB134 /* NSObject+SBJSON.m */,
+				C85CA14515CC80FA00ACB134 /* NSString+SBJSON.h */,
+				C85CA14615CC80FA00ACB134 /* NSString+SBJSON.m */,
+				C85CA14715CC80FA00ACB134 /* SBJsonBase.h */,
+				C85CA14815CC80FA00ACB134 /* SBJsonBase.m */,
+				C85CA14915CC80FA00ACB134 /* SBJsonParser.h */,
+				C85CA14A15CC80FA00ACB134 /* SBJsonParser.m */,
+				C85CA14B15CC80FA00ACB134 /* SBJsonWriter.h */,
+				C85CA14C15CC80FA00ACB134 /* SBJsonWriter.m */,
+			);
+			path = Json;
+			sourceTree = SOURCE_ROOT;
+		};
+		C89D4BA4163765D1004EDE38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C89D4BA6163765DC004EDE38 /* FXWilhelm.caf */,
+				C8F39350163B2186004B47AA /* FXTam.caf */,
+				C8F39351163B2186004B47AA /* FXToms.caf */,
+				C8F39352163B2186004B47AA /* FXSnare.caf */,
+				C8F39353163B2186004B47AA /* FXKick.caf */,
+				C8F39354163B2186004B47AA /* FXHihat.caf */,
+			);
+			name = Resources;
+			path = Telepath;
+			sourceTree = "<group>";
+		};
+		C8C421CB162F367B0097C124 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C894E8B31637162D0055F66A /* smslib.h */,
+				C894E8B21637162D0055F66A /* smslib.m */,
+				C8B8C93016372537009B9876 /* QMLightSensor.h */,
+				C8B8C93116372537009B9876 /* QMLightSensor.m */,
+				C8C421CD162F369A0097C124 /* ImageSnap.h */,
+				C8C421CE162F369A0097C124 /* ImageSnap.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C83AE59115CB851B0093D5F7 /* Telepath */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C83AE5B015CB851B0093D5F7 /* Build configuration list for PBXNativeTarget "Telepath" */;
+			buildPhases = (
+				C83AE58E15CB851B0093D5F7 /* Sources */,
+				C83AE58F15CB851B0093D5F7 /* Frameworks */,
+				C83AE59015CB851B0093D5F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Telepath;
+			productName = Telepath;
+			productReference = C83AE59215CB851B0093D5F7 /* Telepath.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C83AE58915CB851B0093D5F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = QM;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Inkren, Inc";
+			};
+			buildConfigurationList = C83AE58C15CB851B0093D5F7 /* Build configuration list for PBXProject "Telepath" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C83AE58715CB851B0093D5F7;
+			productRefGroup = C83AE59315CB851B0093D5F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C83AE59115CB851B0093D5F7 /* Telepath */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C83AE59015CB851B0093D5F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83AE5A115CB851B0093D5F7 /* InfoPlist.strings in Resources */,
+				C83AE5AD15CB851B0093D5F7 /* MainMenu.xib in Resources */,
+				C83AE5C715CB886E0093D5F7 /* Icon.jpg in Resources */,
+				C89D4BA7163765DC004EDE38 /* FXWilhelm.caf in Resources */,
+				C8F39355163B2186004B47AA /* FXTam.caf in Resources */,
+				C8F39356163B2186004B47AA /* FXToms.caf in Resources */,
+				C8F39357163B2186004B47AA /* FXSnare.caf in Resources */,
+				C8F39358163B2186004B47AA /* FXKick.caf in Resources */,
+				C8F39359163B2186004B47AA /* FXHihat.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C83AE58E15CB851B0093D5F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C83AE5A315CB851B0093D5F7 /* main.m in Sources */,
+				C83AE5AA15CB851B0093D5F7 /* QMAppDelegate.m in Sources */,
+				C85CA14D15CC80FA00ACB134 /* NSObject+SBJSON.m in Sources */,
+				C85CA14E15CC80FA00ACB134 /* NSString+SBJSON.m in Sources */,
+				C85CA14F15CC80FA00ACB134 /* SBJsonBase.m in Sources */,
+				C85CA15015CC80FA00ACB134 /* SBJsonParser.m in Sources */,
+				C85CA15115CC80FA00ACB134 /* SBJsonWriter.m in Sources */,
+				C8C421CF162F369A0097C124 /* ImageSnap.m in Sources */,
+				C894E8B41637162D0055F66A /* smslib.m in Sources */,
+				C8B8C93216372537009B9876 /* QMLightSensor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C83AE59F15CB851B0093D5F7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C83AE5A015CB851B0093D5F7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C83AE5AB15CB851B0093D5F7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C83AE5AC15CB851B0093D5F7 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C83AE5AE15CB851B0093D5F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C83AE5AF15CB851B0093D5F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C83AE5B115CB851B0093D5F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Telepath/Telepath-Prefix.pch";
+				INFOPLIST_FILE = "Telepath/Telepath-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C83AE5B215CB851B0093D5F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Telepath/Telepath-Prefix.pch";
+				INFOPLIST_FILE = "Telepath/Telepath-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C83AE58C15CB851B0093D5F7 /* Build configuration list for PBXProject "Telepath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83AE5AE15CB851B0093D5F7 /* Debug */,
+				C83AE5AF15CB851B0093D5F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C83AE5B015CB851B0093D5F7 /* Build configuration list for PBXNativeTarget "Telepath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C83AE5B115CB851B0093D5F7 /* Debug */,
+				C83AE5B215CB851B0093D5F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C83AE58915CB851B0093D5F7 /* Project object */;
+}

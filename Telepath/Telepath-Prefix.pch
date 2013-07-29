@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Telepath' target in the 'Telepath' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
