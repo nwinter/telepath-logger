@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4504" systemVersion="12E55" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1080" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4504"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TPHUDWindowController">
+            <connections>
+                <outlet property="cameraImage" destination="ejd-tL-d3F" id="E0b-AL-Dta"/>
+                <outlet property="cameraTimerLabel" destination="9Vu-xC-3RR" id="SSD-dx-AxX"/>
+                <outlet property="dayLabel" destination="L3G-cs-qnm" id="wHe-mq-1rD"/>
+                <outlet property="timeLabel" destination="7Pe-5V-9ug" id="Jjf-ng-gwx"/>
+                <outlet property="updateField" destination="F8f-eb-LhJ" id="dH5-lT-Ien"/>
+                <outlet property="window" destination="jme-UD-Yn6" id="BKs-AN-osr"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Telepath" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="jme-UD-Yn6">
+            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" stationary="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="-640" y="0.0" width="2560" height="240"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <view key="contentView" id="xgf-Fb-N1q">
+                <rect key="frame" x="0.0" y="0.0" width="2560" height="240"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejd-tL-d3F">
+                        <rect key="frame" x="1123" y="0.0" width="320" height="240"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="320" id="Ewe-eQ-Jkv"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="LrX-BG-d6z"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="240" id="Tq8-LT-iEs"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="240" id="Zme-gY-fvw"/>
+                            <constraint firstAttribute="height" constant="240" id="c8N-Cm-Jsj"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="320" id="dA1-gV-zcg"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="du4-dG-DRL"/>
+                            <constraint firstAttribute="width" constant="320" id="nnT-2G-IKt"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="WebcamDefaultImage" id="Qtd-in-8AW"/>
+                    </imageView>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JBT-I6-Yx2">
+                        <rect key="frame" x="1453" y="52" width="106" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Events Updated:" id="wLb-dE-NtL">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F8f-eb-LhJ">
+                        <rect key="frame" x="1561" y="52" width="13" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="Gfi-dM-Cfw">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Vu-xC-3RR">
+                        <rect key="frame" x="1399" y="0.0" width="38" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="mvJ-kA-V4b"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" placeholderString="" id="IYR-n8-xAP">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" red="0.1346370234" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="drU-It-7ne">
+                        <rect key="frame" x="853" y="161" width="265" height="79"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="10:32 AM" id="7Pe-5V-9ug">
+                            <font key="font" size="48" name="MSReferenceSpecialty"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fR3-DE-PRj">
+                        <rect key="frame" x="853" y="81" width="265" height="72"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="259" id="ZPm-gT-nZ5"/>
+                            <constraint firstAttribute="height" constant="72" id="mbk-Eq-jcV"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Wednesday" id="L3G-cs-qnm">
+                            <font key="font" size="48" name="MSReferenceSpecialty"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <box autoresizesSubviews="NO" title="Slow-Mo Message Area" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="55F-zi-FB3">
+                        <rect key="frame" x="-3" y="-4" width="486" height="246"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView">
+                            <rect key="frame" x="1" y="1" width="484" height="244"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="480" id="mxb-Wy-f60"/>
+                        </constraints>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="top" secondItem="drU-It-7ne" secondAttribute="top" id="3Ao-wk-Kfr"/>
+                    <constraint firstAttribute="bottom" secondItem="55F-zi-FB3" secondAttribute="bottom" id="5aw-1c-M9c"/>
+                    <constraint firstItem="fR3-DE-PRj" firstAttribute="top" secondItem="drU-It-7ne" secondAttribute="bottom" constant="8" symbolic="YES" id="8Zq-Rk-7bO"/>
+                    <constraint firstAttribute="bottom" secondItem="ejd-tL-d3F" secondAttribute="bottom" id="CUi-bB-DwK"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="Eqb-Dx-L4b"/>
+                    <constraint firstItem="F8f-eb-LhJ" firstAttribute="leading" secondItem="JBT-I6-Yx2" secondAttribute="trailing" constant="8" symbolic="YES" id="FOQ-7L-FkH"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="leading" secondItem="xgf-Fb-N1q" secondAttribute="leading" constant="1123" id="G57-De-YJa"/>
+                    <constraint firstItem="fR3-DE-PRj" firstAttribute="leading" secondItem="drU-It-7ne" secondAttribute="leading" id="IOL-HQ-x4L"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="bottom" secondItem="9Vu-xC-3RR" secondAttribute="bottom" id="McG-EK-FzJ"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="leading" secondItem="drU-It-7ne" secondAttribute="trailing" constant="8" symbolic="YES" id="N5c-g7-ogJ"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="leading" secondItem="fR3-DE-PRj" secondAttribute="trailing" constant="8" symbolic="YES" id="NVN-5b-hN4"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="Rfg-gQ-emF"/>
+                    <constraint firstItem="JBT-I6-Yx2" firstAttribute="leading" secondItem="ejd-tL-d3F" secondAttribute="trailing" constant="13" id="Y9o-hB-PWz"/>
+                    <constraint firstAttribute="bottom" secondItem="ejd-tL-d3F" secondAttribute="bottom" id="ZEp-yS-8Ad"/>
+                    <constraint firstAttribute="bottom" secondItem="ejd-tL-d3F" secondAttribute="bottom" id="bWb-Ou-OQv"/>
+                    <constraint firstItem="ejd-tL-d3F" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="dk9-vY-mzP"/>
+                    <constraint firstAttribute="bottom" secondItem="JBT-I6-Yx2" secondAttribute="bottom" constant="52" id="kbU-jx-Pyb"/>
+                    <constraint firstItem="55F-zi-FB3" firstAttribute="leading" secondItem="xgf-Fb-N1q" secondAttribute="leading" id="m9x-s9-fMV"/>
+                    <constraint firstItem="JBT-I6-Yx2" firstAttribute="baseline" secondItem="F8f-eb-LhJ" secondAttribute="baseline" id="pHi-KD-6Ao"/>
+                    <constraint firstAttribute="bottom" secondItem="fR3-DE-PRj" secondAttribute="bottom" constant="81" id="rXE-B5-0Nb"/>
+                    <constraint firstAttribute="trailing" secondItem="9Vu-xC-3RR" secondAttribute="trailing" constant="1126" id="vco-bL-lyl"/>
+                    <constraint firstItem="55F-zi-FB3" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="yfV-hM-fMA"/>
+                </constraints>
+            </view>
+        </window>
+    </objects>
+    <resources>
+        <image name="WebcamDefaultImage" width="240" height="180"/>
+    </resources>
+</document>

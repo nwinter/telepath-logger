@@ -1,5 +1,5 @@
 //
-//  main.m
+//  TPHUDWindowController.h
 //  Telepath
 //
 //  Created by Nick Winter on 8/30/13.
@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-int main(int argc, const char * argv[])
-{
-    return NSApplicationMain(argc, argv);
-}
+@interface TPHUDWindowController : NSWindowController
+
+@end
