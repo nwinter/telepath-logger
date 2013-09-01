@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface TPTrackerMouse : NSObject
+@property (readonly) uint totalEvents;
 
 @end

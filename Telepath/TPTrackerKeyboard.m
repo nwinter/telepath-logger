@@ -15,6 +15,7 @@
 @property NSArray *reallyBadStuff;
 @property NSArray *punctuation;
 @property id eventMonitor;
+@property (readwrite) uint totalEvents;
 
 @end
 
@@ -45,12 +46,13 @@
 }
 
 - (void)loadModifierKeys {
+    // http://blog.elliottcable.name/posts/useful_unicode.xhtml
     self.modifierKeys =
-    @[[NSMutableArray arrayWithObjects:@"<capslock>", @(NSAlphaShiftKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<shift>", @(NSShiftKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<ctrl>", @(NSControlKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<alt>", @(NSAlternateKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<cmd>", @(NSCommandKeyMask), @(NO), nil],
+    @[[NSMutableArray arrayWithObjects:@"⇪", @(NSAlphaShiftKeyMask), @(NO), nil],
+      [NSMutableArray arrayWithObjects:@"⇧", @(NSShiftKeyMask), @(NO), nil],
+      [NSMutableArray arrayWithObjects:@"⌃", @(NSControlKeyMask), @(NO), nil],
+      [NSMutableArray arrayWithObjects:@"⌥", @(NSAlternateKeyMask), @(NO), nil],
+      [NSMutableArray arrayWithObjects:@"⌘", @(NSCommandKeyMask), @(NO), nil],
       [NSMutableArray arrayWithObjects:@"<numlock>", @(NSNumericPadKeyMask), @(NO), nil],
       [NSMutableArray arrayWithObjects:@"<help>", @(NSHelpKeyMask), @(NO), nil],
       [NSMutableArray arrayWithObjects:@"<fn>", @(NSFunctionKeyMask), @(NO), nil],
@@ -88,29 +90,32 @@
 	else
 		[event addObject:@"keyDown"];
 	
+    BOOL isText = NO;
 	int code = [e keyCode];
 	if(code == 36)
-		[event addObject:@"<return>"];
+		[event addObject:@"↩"];
 	else if (code == 48)
-		[event addObject:@"<tab>"];
+		[event addObject:@"⇥"];
 	else if (code == 49)
-		[event addObject:@"<space>"];
+		[event addObject:@" "];
 	else if (code == 51)
-		[event addObject:@"<delete>"];
+		[event addObject:@"⌫"];
 	else if (code == 53)
-		[event addObject:@"<esc>"];
+		[event addObject:@"␛"];
 	else if (code == 123)
-		[event addObject:@"<left>"];
+		[event addObject:@"←"];
 	else if (code == 124)
-		[event addObject:@"<right>"];
+		[event addObject:@"→"];
 	else if (code == 125)
-		[event addObject:@"<down>"];
+		[event addObject:@"↓"];
 	else if (code == 126)
-		[event addObject:@"<up>"];
-	else
+		[event addObject:@"↑"];
+	else {
 		[event addObject:[e characters]];
+        isText = YES;
+    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"isText": @(isText)}];
     
     if(keyUp) {
         [self.recentCharacters appendString:[e characters]];
@@ -138,7 +143,7 @@
     if([event count] == 1)
         ;//NSLog(@"Hmm; modifier flags changed, but we didn't match any of the flags...? %d", flags); // happens with left/right mods
     else
-        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"isText": @(NO)}];
     
     /*
      Later we could make this fancier to get left/right modifier keys by using this:

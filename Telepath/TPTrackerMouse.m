@@ -14,6 +14,7 @@
 
 @property NSMutableArray *events;
 @property id eventMonitor;
+@property (readwrite) uint totalEvents;
 
 @end
 
@@ -52,7 +53,7 @@
 	[event addObject:type];
 	[event addObject:@(p.x)];
 	[event addObject:@(p.y)];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityMouse object:self userInfo:@{@"event": event}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityMouse object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents)}];
 }
 
 @end

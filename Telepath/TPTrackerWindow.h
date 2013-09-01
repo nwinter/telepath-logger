@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface TPTrackerWindow : NSObject
+@property (readonly) uint totalEvents;
 
 @end

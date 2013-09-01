@@ -17,6 +17,7 @@
 @property NSString *lastURL;
 @property NSTimeInterval lastWindowSwitch;
 @property NSTimer *windowSampleTimer;
+@property (readwrite) uint totalEvents;
 
 @end
 
@@ -65,7 +66,7 @@ const NSTimeInterval WINDOW_SAMPLE_RATE = 0.025;
         if(!justTopWindow)
             [event addObject:@(count)];
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWindow object:self userInfo:@{@"event": event}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWindow object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents)}];
         if(count++ == 0) {
             self.lastWindowName = windowName;
             self.lastOwnerName = ownerName;
