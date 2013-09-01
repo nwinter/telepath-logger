@@ -55,7 +55,6 @@ const double FILE_WRITE_INTERVAL = 1;
 {
     self = [super init];
     if (self) {
-        self.cameraRecordingInterval = 86400 / 30 / 60;  // Default: one minute per day at 30 FPS (1 shot every 48s)
         self.eventsToLog = [NSMutableArray array];
         self.logFileSwitchTimer = [NSTimer scheduledTimerWithTimeInterval:FILE_SWITCH_INTERVAL target:self selector:@selector(openNewFile:) userInfo:nil repeats:YES];
         self.logFileWriteTimer = [NSTimer scheduledTimerWithTimeInterval:FILE_WRITE_INTERVAL target:self selector:@selector(writeLogs:) userInfo:nil repeats:YES];
@@ -64,7 +63,9 @@ const double FILE_WRITE_INTERVAL = 1;
         self.trackerMouse = [TPTrackerMouse new];
         self.trackerWindow = [TPTrackerWindow new];
         self.trackerLight = [TPTrackerLight new];
-        self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:self.cameraRecordingInterval andPreviewInterval:1 / 10.0];
+        NSTimeInterval cameraRecordingInterval = 86400.0 / 30.0 / 60.0;  // Default: one minute per day at 30 FPS (1 shot every 48s)
+        NSTimeInterval cameraPreviewInterval = 1 / 10.0;
+        self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
         [nc addObserver:self selector:@selector(onActivityKeyboard:) name:TPActivityKeyboard object:self.trackerKeyboard];
         [nc addObserver:self selector:@selector(onActivityMouse:) name:TPActivityMouse object:self.trackerMouse];
         [nc addObserver:self selector:@selector(onActivityWindow:) name:TPActivityWindow object:self.trackerWindow];

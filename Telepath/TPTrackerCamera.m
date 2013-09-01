@@ -26,6 +26,7 @@
 {
     self = [super init];
     if (self) {
+        self.lastSnapshotTime = now();
         self.previewInterval = previewInterval;  // Starts recording
         self.recordingInterval = recordingInterval;  // Starts recording
     }
@@ -53,7 +54,7 @@
     if(!self.camera) {
         self.camera = [ImageSnap new];
         [self.camera startSession:[ImageSnap defaultVideoDevice]];
-        self.images = [NSMutableArray new];
+        self.images = [NSMutableArray array];
     }
     [self.cameraTimer invalidate];
     self.cameraTimer = [NSTimer scheduledTimerWithTimeInterval:self.previewInterval target:self selector:@selector(takeSnapshot:) userInfo:nil repeats:YES];
