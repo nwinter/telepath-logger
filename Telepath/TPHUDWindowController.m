@@ -11,12 +11,17 @@
 #import "TPLightSensor.h"
 #import "TPTracker.h"
 
-
 @interface TPHUDWindowController ()
+// Camera Area
 @property (unsafe_unretained) IBOutlet NSImageView *cameraImage;
 @property (weak) IBOutlet NSTextField *cameraTimerLabel;
+
+// Time Area
 @property (weak) IBOutlet NSTextFieldCell *timeLabel;
 @property (weak) IBOutlet NSTextFieldCell *dayLabel;
+@property (weak) IBOutlet NSTextField *sessionHoursLabel;
+@property (weak) IBOutlet NSTextField *dayHoursLabel;
+@property (weak) IBOutlet NSTextField *weekHoursLabel;
 
 // Random Stats Area
 @property (weak) IBOutlet NSTextField *keystrokesField;
@@ -33,9 +38,13 @@
 @property (weak) IBOutlet NSTextField *currentDocumentField;
 @property (unsafe_unretained) IBOutlet NSTextView *recentKeysView;
 
+// Activity Area
+@property (weak) IBOutlet NSComboBox *activityBox;
+@property (weak) IBOutlet NSTextField *activityDetailField;
 
 @property TPTracker *tracker;
 @property NSTimer *timeUpdateTimer;
+@property NSString *currentActivity;
 
 @end
 
@@ -55,6 +64,7 @@
     [super windowDidLoad];
     [self.window setLevel:NSFloatingWindowLevel];
     [self.window setCollectionBehavior:NSWindowCollectionBehaviorStationary|NSWindowCollectionBehaviorCanJoinAllSpaces|NSWindowCollectionBehaviorFullScreenAuxiliary];
+    [self.window becomeKeyWindow];
     self.tracker = [TPTracker new];
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -64,6 +74,11 @@
     [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:nil];
     [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
+    //nc.addObserver_selector_name_object_(listener, 'getSong:', 'com.apple.iTunes.playerInfo', None)
+    //nc.addObserver_selector_name_object_(listener, 'getEvent:', 'com.telepath.Telepath.TrackerEvent', None)
+
+    [self setUpActivityBox];
 }
 
 - (void)dealloc
@@ -79,6 +94,9 @@
         NSInteger fontSize = [note.userInfo[@"isText"] boolValue] ? 24 : 13;
         NSAttributedString *newText = [[NSAttributedString alloc] initWithString:event[2] attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:fontSize]}];
         [self.recentKeysView.textStorage appendAttributedString:newText];
+        NSInteger length = [self.recentKeysView.textStorage length];
+        if(length > 500)
+            [self.recentKeysView.textStorage replaceCharactersInRange:NSMakeRange(0, length - 500) withString:@""];
         [self.recentKeysView scrollToEndOfDocument:nil];
     }
 }
@@ -113,6 +131,53 @@
     [timeFormat setDateFormat:@"HH:mm"];
     [self.timeLabel setStringValue:[timeFormat stringFromDate:date]];
     [self.dayLabel setStringValue:[dayFormat stringFromDate:date]];
+}
+
+
+- (void)setUpActivityBox {
+    NSArray *pastActivities = [[NSUserDefaults standardUserDefaults] arrayForKey:@"activities"];
+    NSMutableArray *activities = [NSMutableArray arrayWithArray:pastActivities ? pastActivities : @[@"Coding", @"Sleeping", @"Eating"]];
+    self.currentActivity = [[NSUserDefaults standardUserDefaults] stringForKey:@"currentActivity"];
+    if(self.currentActivity && ![activities containsObject:self.currentActivity])
+        [activities addObject:self.currentActivity];
+    [self.activityBox addItemsWithObjectValues:activities];
+    if(self.currentActivity)
+        [self.activityBox selectItemWithObjectValue:self.currentActivity];
+    void (^onChangedBlock)(NSNotification *note) = ^(NSNotification *note) {
+        if([note.name isEqualToString:NSComboBoxSelectionDidChangeNotification])
+            self.currentActivity = [self.activityBox objectValueOfSelectedItem];
+        else
+            self.currentActivity = [self.activityBox stringValue];
+        [[NSUserDefaults standardUserDefaults] setObject:self.currentActivity forKey:@"currentActivity"];
+        if(![activities containsObject:self.currentActivity]) {
+            [activities addObject:self.currentActivity];
+            [self.activityBox addItemWithObjectValue:self.currentActivity];
+            [[NSUserDefaults standardUserDefaults] setObject:activities forKey:@"activities"];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    };
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSComboBoxSelectionDidChangeNotification object:self.activityBox queue:nil usingBlock:onChangedBlock];
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSControlTextDidEndEditingNotification object:self.activityBox queue:nil usingBlock:onChangedBlock];
+    
+    NSString *currentActivityDetail = [[NSUserDefaults standardUserDefaults] stringForKey:@"currentActivityDetail"];
+    if(currentActivityDetail)
+        self.activityDetailField.stringValue = currentActivityDetail;
+}
+
+- (IBAction)onActivityDetailChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.activityDetailField.stringValue forKey:@"currentActivityDetail"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark - External notifications
+
+- (void)onWorkChanged:(NSNotification *)note {
+    float sessionHours = [note.userInfo[@"sessionHours"] floatValue];
+    float dayHours = [note.userInfo[@"dayHours"] floatValue];
+    float weekHours = [note.userInfo[@"weekHours"] floatValue];
+    [self.sessionHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)sessionHours, (int)(60 * sessionHours) % 60]];
+    [self.dayHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)dayHours, (int)(60 * dayHours) % 60]];
+    [self.weekHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)weekHours, (int)(60 * weekHours) % 60]];
 }
 
 @end

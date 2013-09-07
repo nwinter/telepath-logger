@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TPHUDWindowController : NSWindowController
+@interface TPHUDWindowController : NSWindowController <NSComboBoxDataSource>
 
 @end

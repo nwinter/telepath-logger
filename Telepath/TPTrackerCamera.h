@@ -16,6 +16,9 @@
 /// We'll update the camera preview at this interval (seconds).
 @property (nonatomic) NSTimeInterval previewInterval;
 
+/// Our camera images will be cropped to this much. 1.0 for no crop. Default 0.6.
+@property float cropRatio;
+
 - (id)initWithRecordingInterval:(NSTimeInterval)recordingInterval andPreviewInterval:(NSTimeInterval)previewInterval;
 
 @end

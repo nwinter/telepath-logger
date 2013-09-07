@@ -31,6 +31,7 @@
 		C8F632B117D26BA800330DFD /* TPTrackerLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F632B017D26BA800330DFD /* TPTrackerLight.m */; };
 		C8F632B417D26BC400330DFD /* TPTrackerCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F632B317D26BC400330DFD /* TPTrackerCamera.m */; };
 		C8F632B817D26D8B00330DFD /* TPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F632B717D26D8B00330DFD /* TPUtilities.m */; };
+		C8FACFAF17DBCCE0005182E6 /* TPWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FACFAE17DBCCE0005182E6 /* TPWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		C8F632B317D26BC400330DFD /* TPTrackerCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerCamera.m; sourceTree = "<group>"; };
 		C8F632B617D26D8B00330DFD /* TPUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPUtilities.h; sourceTree = "<group>"; };
 		C8F632B717D26D8B00330DFD /* TPUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPUtilities.m; sourceTree = "<group>"; };
+		C8FACFAD17DBCCE0005182E6 /* TPWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWindow.h; sourceTree = "<group>"; };
+		C8FACFAE17DBCCE0005182E6 /* TPWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,8 @@
 				C8F6329117D1074200330DFD /* TPHUDWindowController.h */,
 				C8F6329217D1074200330DFD /* TPHUDWindowController.m */,
 				C8F6329317D1074200330DFD /* TPHUDWindowController.xib */,
+				C8FACFAD17DBCCE0005182E6 /* TPWindow.h */,
+				C8FACFAE17DBCCE0005182E6 /* TPWindow.m */,
 				C8F6329617D109C200330DFD /* TPLightSensor.h */,
 				C8F6329717D109C200330DFD /* TPLightSensor.m */,
 				C8F632B617D26D8B00330DFD /* TPUtilities.h */,
@@ -341,6 +346,7 @@
 				C8F632AE17D26B9A00330DFD /* TPTrackerWindow.m in Sources */,
 				C8F632B117D26BA800330DFD /* TPTrackerLight.m in Sources */,
 				C8F6329817D109C200330DFD /* TPLightSensor.m in Sources */,
+				C8FACFAF17DBCCE0005182E6 /* TPWindow.m in Sources */,
 				C8F632A817D26B8700330DFD /* TPTrackerKeyboard.m in Sources */,
 				C8F632AB17D26B9000330DFD /* TPTrackerMouse.m in Sources */,
 			);

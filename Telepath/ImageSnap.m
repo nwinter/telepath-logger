@@ -39,6 +39,7 @@ NSString *VERSION = @"0.2.5";
     mCaptureDeviceInput = nil;
     mCaptureDecompressedVideoOutput = nil;
 	mCurrentImageBuffer = nil;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDeviceDisconnected:) name:QTCaptureDeviceWasDisconnectedNotification object:nil];
 	return self;
 }
 
@@ -48,6 +49,7 @@ NSString *VERSION = @"0.2.5";
 	if( mCaptureDeviceInput )				[mCaptureDeviceInput release];
 	if( mCaptureDecompressedVideoOutput )	[mCaptureDecompressedVideoOutput release];
     CVBufferRelease(mCurrentImageBuffer);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
 }
@@ -281,6 +283,7 @@ NSString *VERSION = @"0.2.5";
     NSCIImageRep *imageRep = [NSCIImageRep imageRepWithCIImage:[CIImage imageWithCVImageBuffer:frame]];
     NSImage *image = [[[NSImage alloc] initWithSize:[imageRep size]] autorelease];
     [image addRepresentation:imageRep];
+    CVBufferRelease(frame);  // Nick's addition. Maybe horribly unsafe or something, but was leaking crazy memory without this.
 	verbose( "Snapshot taken.\n" );
     
     return image;
@@ -430,6 +433,12 @@ NSString *VERSION = @"0.2.5";
     }   // end sync
     CVBufferRelease(imageBufferToRelease);
     
+}
+
+- (void)onDeviceDisconnected:(NSNotification *)note {
+    return;  // This didn't work
+    [self stopSession];
+    [self startSession:[ImageSnap defaultVideoDevice]];
 }
 
 @end

@@ -70,7 +70,7 @@ const double FILE_WRITE_INTERVAL = 1;
         [nc addObserver:self selector:@selector(onActivityMouse:) name:TPActivityMouse object:self.trackerMouse];
         [nc addObserver:self selector:@selector(onActivityWindow:) name:TPActivityWindow object:self.trackerWindow];
         [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:self.trackerLight];
-        [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:self.trackerCamera];
+        [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:self.trackerCamera];        
     }
     return self;
 }
