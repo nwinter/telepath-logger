@@ -69,6 +69,7 @@
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(onActivityKeyboard:) name:TPActivityKeyboard object:nil];
+    [nc addObserver:self selector:@selector(onActivityKeyboardVeryBad:) name:TPActivityKeyboardVeryBad object:nil];
     [nc addObserver:self selector:@selector(onActivityMouse:) name:TPActivityMouse object:nil];
     [nc addObserver:self selector:@selector(onActivityWindow:) name:TPActivityWindow object:nil];
     [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:nil];
@@ -99,6 +100,10 @@
             [self.recentKeysView.textStorage replaceCharactersInRange:NSMakeRange(0, length - 500) withString:@""];
         [self.recentKeysView scrollToEndOfDocument:nil];
     }
+}
+
+- (void)onActivityKeyboardVeryBad:(NSNotification *)note {
+    [self.recentKeysView.textStorage replaceCharactersInRange:NSMakeRange([self.recentKeysView.textStorage length] - [note.userInfo[@"badLength"] intValue], [note.userInfo[@"badLength"] intValue]) withString:@""];
 }
 
 - (void)onActivityMouse:(NSNotification *)note {

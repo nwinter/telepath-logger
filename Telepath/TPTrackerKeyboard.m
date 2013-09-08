@@ -14,6 +14,7 @@
 @property NSMutableString *recentCharacters;
 @property NSArray *reallyBadStuff;
 @property NSArray *punctuation;
+@property NSMutableString *veryBad;
 @property id eventMonitor;
 @property (readwrite) uint totalEvents;
 
@@ -41,8 +42,11 @@
     // Reading list of terrible words, upon typing of which we shall beep castigatorally!
     NSString *filepath = [@"~/Dropbox/code/really_bad_stuff.txt" stringByExpandingTildeInPath];
     NSString *contents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
-    self.reallyBadStuff = [contents componentsSeparatedByString:@"\n"];
+    self.reallyBadStuff = [[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@"\n"];
     self.punctuation = @[@" ", @",", @".", @";", @"?", @"!", @"'", @"\"", @"-", @"/", @"(", @")", @"[", @"]", @"\n"];
+    self.veryBad = [NSMutableString string];
+    for(uint i = 0; i < [[self.reallyBadStuff lastObject] length]; ++i)
+        [self.veryBad appendFormat:@"%C", (unichar)([[self.reallyBadStuff lastObject] characterAtIndex:i] - 1)];
 }
 
 - (void)loadModifierKeys {
@@ -70,6 +74,10 @@
                 NSBeep();
             }
         }
+    if([self.recentCharacters rangeOfString:self.veryBad].location != NSNotFound) {
+        [self.recentCharacters deleteCharactersInRange:NSMakeRange(0, [self.recentCharacters length])];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboardVeryBad object:self userInfo:@{@"badLength": @([self.veryBad length])}];
+    }
 }
 
 - (void)onInputEvent:(NSEvent *)e {

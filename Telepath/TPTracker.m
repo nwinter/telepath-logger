@@ -38,6 +38,7 @@
 
 NSString * const TPActivityAny = @"TPActivityAny";
 NSString * const TPActivityKeyboard = @"TPActivityKeyboard";
+NSString * const TPActivityKeyboardVeryBad = @"TPActivityKeyboardVeryBad";
 NSString * const TPActivityMouse = @"TPActivityMouse";
 NSString * const TPActivityWindow = @"TPActivityWindow";
 NSString * const TPActivityLight = @"TPActivityLight";

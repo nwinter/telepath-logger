@@ -10,6 +10,7 @@
 
 extern NSString * const TPActivityAny;
 extern NSString * const TPActivityKeyboard;
+extern NSString * const TPActivityKeyboardVeryBad;
 extern NSString * const TPActivityMouse;
 extern NSString * const TPActivityWindow;
 extern NSString * const TPActivityLight;
