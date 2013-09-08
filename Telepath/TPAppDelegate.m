@@ -144,6 +144,8 @@
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     // Save changes in the application's managed object context before the application terminates.
     
     if (!_managedObjectContext) {

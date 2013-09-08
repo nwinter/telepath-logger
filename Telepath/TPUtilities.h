@@ -13,3 +13,9 @@ double now(void);
 
 /// Shorthand: serialize object to JSON.
 NSString *JSONRepresentation(id object);
+
+/// Shorthand: deserialize dictionary from JSON.
+NSDictionary *dictionaryFromJSON(NSData *json);
+
+/// Shorthand: deserialize array to JSON.
+NSArray *arrayFromJSON(NSData *json);

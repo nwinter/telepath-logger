@@ -15,6 +15,8 @@ extern NSString * const TPActivityMouse;
 extern NSString * const TPActivityWindow;
 extern NSString * const TPActivityLight;
 extern NSString * const TPActivityCamera;
+extern NSString * const TPActivityGitHub;
+extern NSString * const TPActivityClearTotals;
 
 @interface TPTracker : NSObject
 

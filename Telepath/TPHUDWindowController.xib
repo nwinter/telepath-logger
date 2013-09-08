@@ -226,6 +226,17 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="pVg-TK-Del">
+                                    <rect key="frame" x="182" y="5" width="18" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="bevel" title="clear" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="GTX-NH-Dn7">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" size="6" name="LucidaGrande"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="onRandomStatsClearClicked:" target="-2" id="EaV-k5-bMX"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                         <constraints>
@@ -245,6 +256,7 @@
                             <constraint firstAttribute="trailing" secondItem="BvJ-Xg-URj" secondAttribute="trailing" constant="16" id="Ggp-WK-rZh"/>
                             <constraint firstItem="250-au-stZ" firstAttribute="leading" secondItem="aU6-08-gFC" secondAttribute="leading" constant="16" id="H0U-Zr-qcE"/>
                             <constraint firstItem="YoO-GY-Y7X" firstAttribute="centerY" secondItem="nux-pn-Aya" secondAttribute="centerY" id="H2D-Tb-X6I"/>
+                            <constraint firstAttribute="bottom" secondItem="pVg-TK-Del" secondAttribute="bottom" constant="2" id="JaL-jz-Fik"/>
                             <constraint firstItem="250-au-stZ" firstAttribute="top" secondItem="1pg-LC-caa" secondAttribute="bottom" constant="8" id="RPf-7Q-sNs"/>
                             <constraint firstItem="bN5-La-MDS" firstAttribute="leading" secondItem="aU6-08-gFC" secondAttribute="leading" constant="16" id="Wfq-yy-C1O"/>
                             <constraint firstItem="1pg-LC-caa" firstAttribute="top" secondItem="YoO-GY-Y7X" secondAttribute="bottom" constant="8" id="Xpl-zp-uTS"/>
@@ -262,6 +274,7 @@
                             <constraint firstAttribute="trailing" secondItem="VCL-tq-6jY" secondAttribute="trailing" constant="16" id="unL-4M-KUk"/>
                             <constraint firstAttribute="width" constant="200" id="w4v-q4-bmh"/>
                             <constraint firstItem="4pi-ME-wEU" firstAttribute="top" secondItem="q7f-P4-6X6" secondAttribute="bottom" constant="8" id="wa4-cs-SJP"/>
+                            <constraint firstAttribute="trailing" secondItem="pVg-TK-Del" secondAttribute="trailing" constant="2" id="yHG-UG-gc3"/>
                             <constraint firstAttribute="trailing" secondItem="nux-pn-Aya" secondAttribute="trailing" constant="16" id="zLY-XZ-gWB"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

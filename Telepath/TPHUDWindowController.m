@@ -74,6 +74,7 @@
     [nc addObserver:self selector:@selector(onActivityWindow:) name:TPActivityWindow object:nil];
     [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:nil];
     [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:nil];
+    [nc addObserver:self selector:@selector(onActivityGitHub:) name:TPActivityGitHub object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
     //nc.addObserver_selector_name_object_(listener, 'getSong:', 'com.apple.iTunes.playerInfo', None)
@@ -128,6 +129,10 @@
     [self.cameraTimerLabel setStringValue:[NSString stringWithFormat:@"%.0f", countdown]];
 }
 
+- (void)onActivityGitHub:(NSNotification *)note {
+    [self.commitsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"totalCommits"]]];
+}
+
 - (void)updateTime:(NSTimer *)timer {
     NSDate *date = [NSDate date];
     NSDateFormatter *dayFormat = [NSDateFormatter new];
@@ -172,6 +177,11 @@
 - (IBAction)onActivityDetailChanged:(id)sender {
     [[NSUserDefaults standardUserDefaults] setObject:self.activityDetailField.stringValue forKey:@"currentActivityDetail"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)onRandomStatsClearClicked:(id)sender {
+    NSLog(@"Clear totals!");
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityClearTotals object:self userInfo:nil];
 }
 
 #pragma mark - External notifications

@@ -26,8 +26,18 @@
     if (self) {
         uint logMask = (NSLeftMouseDraggedMask|NSMouseMovedMask|NSLeftMouseDownMask|NSRightMouseDownMask|NSLeftMouseUpMask|NSRightMouseUpMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
+        self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalMouseEvents"];
+        [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalMouseEvents"];
+            self.totalEvents = 0;
+        }];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)onInputEvent:(NSEvent *)e {
@@ -54,6 +64,7 @@
 	[event addObject:@(p.x)];
 	[event addObject:@(p.y)];
     [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityMouse object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents)}];
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalMouseEvents"];
 }
 
 @end

@@ -34,8 +34,18 @@
 
         uint logMask = (NSKeyDownMask|NSKeyUpMask|NSFlagsChangedMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
+        self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalKeyboardEvents"];
+        [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalKeyboardEvents"];
+            self.totalEvents = 0;
+        }];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)loadReallyBadStuff {
@@ -124,6 +134,7 @@
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"isText": @(isText)}];
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalKeyboardEvents"];
     
     if(keyUp) {
         [self.recentCharacters appendString:[e characters]];

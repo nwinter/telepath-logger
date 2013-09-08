@@ -13,6 +13,7 @@
 #import "TPTrackerWindow.h"
 #import "TPTrackerLight.h"
 #import "TPTrackerCamera.h"
+#import "TPTrackerGitHub.h"
 #import "ImageSnap.h"
 
 @interface TPTracker ()
@@ -23,6 +24,7 @@
 @property TPTrackerWindow *trackerWindow;
 @property TPTrackerLight *trackerLight;
 @property TPTrackerCamera *trackerCamera;
+@property TPTrackerGitHub *trackerGitHub;
 
 /* Event logging */
 @property (readwrite) uint totalEvents;
@@ -43,6 +45,8 @@ NSString * const TPActivityMouse = @"TPActivityMouse";
 NSString * const TPActivityWindow = @"TPActivityWindow";
 NSString * const TPActivityLight = @"TPActivityLight";
 NSString * const TPActivityCamera = @"TPActivityCamera";
+NSString * const TPActivityGitHub = @"TPActivityGitHub";
+NSString * const TPActivityClearTotals = @"TPActivityClearTotals";
 
 /// We'll switch log files this often.
 const double FILE_SWITCH_INTERVAL = 1 * 24 * 60 * 60;
@@ -67,11 +71,17 @@ const double FILE_WRITE_INTERVAL = 1;
         NSTimeInterval cameraRecordingInterval = 86400.0 / 30.0 / 60.0;  // Default: one minute per day at 30 FPS (1 shot every 48s)
         NSTimeInterval cameraPreviewInterval = 1 / 10.0;
         self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
+        self.trackerGitHub = [TPTrackerGitHub new];
+        self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalEvents"];
+        [nc addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalEvents"];
+            self.totalEvents = 0;
+        }];
         [nc addObserver:self selector:@selector(onActivityKeyboard:) name:TPActivityKeyboard object:self.trackerKeyboard];
         [nc addObserver:self selector:@selector(onActivityMouse:) name:TPActivityMouse object:self.trackerMouse];
         [nc addObserver:self selector:@selector(onActivityWindow:) name:TPActivityWindow object:self.trackerWindow];
         [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:self.trackerLight];
-        [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:self.trackerCamera];        
+        [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:self.trackerCamera];
     }
     return self;
 }
@@ -94,7 +104,7 @@ const double FILE_WRITE_INTERVAL = 1;
 
 - (void)logEvent:(NSArray *)event {
     [self.eventsToLog addObject:JSONRepresentation(event)];
-    ++self.totalEvents;
+    [[NSUserDefaults standardUserDefaults] setObject:@(++self.totalEvents) forKey:@"totalEvents"];
     [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityAny object:self];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"net.nickwinter.Telepath.TrackerEvent" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:event, @"event", nil]];
 }

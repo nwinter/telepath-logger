@@ -32,8 +32,18 @@ const NSTimeInterval WINDOW_SAMPLE_RATE = 0.025;
     if (self) {
         self.lastWindowSwitch = now();
         self.windowSampleTimer = [NSTimer scheduledTimerWithTimeInterval:WINDOW_SAMPLE_RATE target:self selector:@selector(sample:) userInfo:nil repeats:YES];
+        self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalWindowEvents"];
+        [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalWindowEvents"];
+            self.totalEvents = 0;
+        }];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)sample:(NSTimer *)timer {
@@ -67,6 +77,7 @@ const NSTimeInterval WINDOW_SAMPLE_RATE = 0.025;
             [event addObject:@(count)];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWindow object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents)}];
+        [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalWindowEvents"];
         if(count++ == 0) {
             self.lastWindowName = windowName;
             self.lastOwnerName = ownerName;
