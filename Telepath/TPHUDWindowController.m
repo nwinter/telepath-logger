@@ -65,7 +65,6 @@
     [self.window setLevel:NSFloatingWindowLevel];
     [self.window setCollectionBehavior:NSWindowCollectionBehaviorStationary|NSWindowCollectionBehaviorCanJoinAllSpaces|NSWindowCollectionBehaviorFullScreenAuxiliary];
     [self.window becomeKeyWindow];
-    self.tracker = [TPTracker new];
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(onActivityKeyboard:) name:TPActivityKeyboard object:nil];
@@ -76,12 +75,15 @@
     [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:nil];
     [nc addObserver:self selector:@selector(onActivityGitHub:) name:TPActivityGitHub object:nil];
     [nc addObserver:self selector:@selector(onActivityTrello:) name:TPActivityTrello object:nil];
+    [nc addObserver:self selector:@selector(onActivityBrunchBuild:) name:TPActivityBrunchBuild object:nil];
+    [nc addObserver:self selector:@selector(onActivityEmail:) name:TPActivityEmail object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
     //nc.addObserver_selector_name_object_(listener, 'getSong:', 'com.apple.iTunes.playerInfo', None)
     //nc.addObserver_selector_name_object_(listener, 'getEvent:', 'com.telepath.Telepath.TrackerEvent', None)
 
     [self setUpActivityBox];
+    self.tracker = [TPTracker new];
 }
 
 - (void)dealloc
@@ -137,6 +139,14 @@
 - (void)onActivityTrello:(NSNotification *)note {
     [self.trellosSlainField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentTrellosSlain"]]];
     [self.trellosRemainingField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"trellosAlive"]]];
+}
+
+- (void)onActivityBrunchBuild:(NSNotification *)note {
+    [self.buildsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentEvents"]]];
+}
+
+- (void)onActivityEmail:(NSNotification *)note {
+    [self.unreadEmailsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"unreadEmails"]]];
 }
 
 - (void)updateTime:(NSTimer *)timer {

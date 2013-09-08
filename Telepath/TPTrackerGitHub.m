@@ -70,9 +70,9 @@
         for(NSDictionary *contributor in contributors) {
             if(![contributor[@"author"][@"login"] isEqualToString:self.gitHubUserName]) continue;
             uint newTotalCommits = [contributor[@"total"] intValue];
-            if(newTotalCommits == self.totalCommits) return;
+            //if(newTotalCommits == self.totalCommits) return;
             self.totalCommits = newTotalCommits;
-            NSLog(@"Have total GitHub commits: %d -- current %d", self.totalCommits, self.currentCommits);
+            //NSLog(@"Have total GitHub commits: %d -- current %d", self.totalCommits, self.currentCommits);
             [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityGitHub object:self userInfo:@{@"totalCommits": @(self.totalCommits), @"currentCommits": @(self.currentCommits)}];
             [[NSUserDefaults standardUserDefaults] setObject:@(self.totalCommits) forKey:@"totalGitHubCommits"];
         }

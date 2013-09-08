@@ -84,7 +84,7 @@
             else
                 ++newTrellosAlive;
         }
-        if(newTrellosAlive == self.trellosAlive && newTrellosSlain == self.totalTrellosSlain) return;
+        //if(newTrellosAlive == self.trellosAlive && newTrellosSlain == self.totalTrellosSlain) return;
         self.trellosAlive = newTrellosAlive;
         self.totalTrellosSlain = newTrellosSlain;
         //NSLog(@"Have total Trellos alive: %d, slain: %d", self.trellosAlive, self.totalTrellosSlain);

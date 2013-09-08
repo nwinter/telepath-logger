@@ -15,6 +15,8 @@
 #import "TPTrackerCamera.h"
 #import "TPTrackerGitHub.h"
 #import "TPTrackerTrello.h"
+#import "TPTrackerBrunchBuilds.h"
+#import "TPTrackerEmail.h"
 #import "ImageSnap.h"
 
 @interface TPTracker ()
@@ -27,6 +29,8 @@
 @property TPTrackerCamera *trackerCamera;
 @property TPTrackerGitHub *trackerGitHub;
 @property TPTrackerTrello *trackerTrello;
+@property TPTrackerBrunchBuilds *trackerBrunchBuilds;
+@property TPTrackerEmail *trackerEmail;
 
 /* Event logging */
 @property uint previousEvents;
@@ -50,6 +54,8 @@ NSString * const TPActivityLight = @"TPActivityLight";
 NSString * const TPActivityCamera = @"TPActivityCamera";
 NSString * const TPActivityGitHub = @"TPActivityGitHub";
 NSString * const TPActivityTrello = @"TPActivityTrello";
+NSString * const TPActivityBrunchBuild = @"TPActivityBrunchBuild";
+NSString * const TPActivityEmail = @"TPActivityEmail";
 NSString * const TPActivityClearTotals = @"TPActivityClearTotals";
 
 /// We'll switch log files this often.
@@ -77,6 +83,8 @@ const double FILE_WRITE_INTERVAL = 1;
         self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
         self.trackerGitHub = [TPTrackerGitHub new];
         self.trackerTrello = [TPTrackerTrello new];
+        self.trackerBrunchBuilds = [TPTrackerBrunchBuilds new];
+        self.trackerEmail = [TPTrackerEmail new];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalEvents"];
         [nc addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
