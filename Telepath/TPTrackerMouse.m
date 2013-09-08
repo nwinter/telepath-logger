@@ -14,6 +14,7 @@
 
 @property NSMutableArray *events;
 @property id eventMonitor;
+@property uint previousEvents;
 @property (readwrite) uint totalEvents;
 
 @end
@@ -26,13 +27,18 @@
     if (self) {
         uint logMask = (NSLeftMouseDraggedMask|NSMouseMovedMask|NSLeftMouseDownMask|NSRightMouseDownMask|NSLeftMouseUpMask|NSRightMouseUpMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
+        self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousMouseEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalMouseEvents"];
         [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalMouseEvents"];
-            self.totalEvents = 0;
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"previousMouseEvents"];
+            self.previousEvents = self.totalEvents;
         }];
     }
     return self;
+}
+
+- (uint)currentEvents {
+    return self.totalEvents - self.previousEvents;
 }
 
 - (void)dealloc
@@ -63,7 +69,7 @@
 	[event addObject:type];
 	[event addObject:@(p.x)];
 	[event addObject:@(p.y)];
-    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityMouse object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityMouse object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"currentEvents": @(self.currentEvents)}];
     [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalMouseEvents"];
 }
 

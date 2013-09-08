@@ -10,5 +10,6 @@
 
 @interface TPTrackerKeyboard : NSObject
 @property NSArray *modifierKeys;
+@property (readonly) uint currentEvents;
 @property (readonly) uint totalEvents;
 @end

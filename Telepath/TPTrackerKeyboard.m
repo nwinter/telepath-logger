@@ -16,6 +16,7 @@
 @property NSArray *punctuation;
 @property NSMutableString *veryBad;
 @property id eventMonitor;
+@property uint previousEvents;
 @property (readwrite) uint totalEvents;
 
 @end
@@ -34,13 +35,18 @@
 
         uint logMask = (NSKeyDownMask|NSKeyUpMask|NSFlagsChangedMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
+        self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousKeyboardEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalKeyboardEvents"];
         [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalKeyboardEvents"];
-            self.totalEvents = 0;
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"previousKeyboardEvents"];
+            self.previousEvents = self.totalEvents;
         }];
     }
     return self;
+}
+
+- (uint)currentEvents {
+    return self.totalEvents - self.previousEvents;
 }
 
 - (void)dealloc
@@ -133,7 +139,7 @@
         isText = YES;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"isText": @(isText)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"currentEvents": @(self.currentEvents), @"isText": @(isText)}];
     [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalKeyboardEvents"];
     
     if(keyUp) {
@@ -162,7 +168,7 @@
     if([event count] == 1)
         ;//NSLog(@"Hmm; modifier flags changed, but we didn't match any of the flags...? %d", flags); // happens with left/right mods
     else
-        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"isText": @(NO)}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"currentEvents": @(self.currentEvents), @"isText": @(NO)}];
     
     /*
      Later we could make this fancier to get left/right modifier keys by using this:

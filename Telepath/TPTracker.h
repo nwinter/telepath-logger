@@ -16,10 +16,12 @@ extern NSString * const TPActivityWindow;
 extern NSString * const TPActivityLight;
 extern NSString * const TPActivityCamera;
 extern NSString * const TPActivityGitHub;
+extern NSString * const TPActivityTrello;
 extern NSString * const TPActivityClearTotals;
 
 @interface TPTracker : NSObject
 
+@property (readonly) uint currentEvents;
 @property (readonly) uint totalEvents;
 @property NSTimeInterval cameraRecordingInterval;
 

@@ -75,6 +75,7 @@
     [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:nil];
     [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:nil];
     [nc addObserver:self selector:@selector(onActivityGitHub:) name:TPActivityGitHub object:nil];
+    [nc addObserver:self selector:@selector(onActivityTrello:) name:TPActivityTrello object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
     //nc.addObserver_selector_name_object_(listener, 'getSong:', 'com.apple.iTunes.playerInfo', None)
@@ -89,7 +90,7 @@
 }
 
 - (void)onActivityKeyboard:(NSNotification *)note {
-    [self.keystrokesField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"totalEvents"]]];
+    [self.keystrokesField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentEvents"]]];
     NSArray *event = note.userInfo[@"event"];
     BOOL down = [event[1] isEqualToString:@"keyDown"];
     if(down) {
@@ -108,11 +109,11 @@
 }
 
 - (void)onActivityMouse:(NSNotification *)note {
-    [self.mouseMovementsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"totalEvents"]]];
+    [self.mouseMovementsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentEvents"]]];
 }
 
 - (void)onActivityWindow:(NSNotification *)note {
-    [self.windowSwitchesField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"totalEvents"]]];
+    [self.windowSwitchesField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentEvents"]]];
     NSArray *event = note.userInfo[@"event"];
     [self.currentWindowField setStringValue:event[2]];
     [self.currentDocumentField setStringValue:event[1]];
@@ -130,7 +131,12 @@
 }
 
 - (void)onActivityGitHub:(NSNotification *)note {
-    [self.commitsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"totalCommits"]]];
+    [self.commitsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentCommits"]]];
+}
+
+- (void)onActivityTrello:(NSNotification *)note {
+    [self.trellosSlainField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentTrellosSlain"]]];
+    [self.trellosRemainingField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"trellosAlive"]]];
 }
 
 - (void)updateTime:(NSTimer *)timer {

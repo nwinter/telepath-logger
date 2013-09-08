@@ -14,6 +14,7 @@
 #import "TPTrackerLight.h"
 #import "TPTrackerCamera.h"
 #import "TPTrackerGitHub.h"
+#import "TPTrackerTrello.h"
 #import "ImageSnap.h"
 
 @interface TPTracker ()
@@ -25,8 +26,10 @@
 @property TPTrackerLight *trackerLight;
 @property TPTrackerCamera *trackerCamera;
 @property TPTrackerGitHub *trackerGitHub;
+@property TPTrackerTrello *trackerTrello;
 
 /* Event logging */
+@property uint previousEvents;
 @property (readwrite) uint totalEvents;
 @property NSMutableArray *eventsToLog;
 
@@ -46,6 +49,7 @@ NSString * const TPActivityWindow = @"TPActivityWindow";
 NSString * const TPActivityLight = @"TPActivityLight";
 NSString * const TPActivityCamera = @"TPActivityCamera";
 NSString * const TPActivityGitHub = @"TPActivityGitHub";
+NSString * const TPActivityTrello = @"TPActivityTrello";
 NSString * const TPActivityClearTotals = @"TPActivityClearTotals";
 
 /// We'll switch log files this often.
@@ -72,10 +76,12 @@ const double FILE_WRITE_INTERVAL = 1;
         NSTimeInterval cameraPreviewInterval = 1 / 10.0;
         self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
         self.trackerGitHub = [TPTrackerGitHub new];
+        self.trackerTrello = [TPTrackerTrello new];
+        self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalEvents"];
         [nc addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalEvents"];
-            self.totalEvents = 0;
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"previousEvents"];
+            self.previousEvents = self.totalEvents;
         }];
         [nc addObserver:self selector:@selector(onActivityKeyboard:) name:TPActivityKeyboard object:self.trackerKeyboard];
         [nc addObserver:self selector:@selector(onActivityMouse:) name:TPActivityMouse object:self.trackerMouse];
@@ -84,6 +90,10 @@ const double FILE_WRITE_INTERVAL = 1;
         [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:self.trackerCamera];
     }
     return self;
+}
+
+- (uint)currentEvents {
+    return self.totalEvents - self.previousEvents;
 }
 
 - (NSTimeInterval)cameraRecordingInterval {

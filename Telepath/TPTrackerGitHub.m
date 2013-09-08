@@ -15,7 +15,8 @@
 @property NSString *gitHubUserName;
 @property NSString *gitHubRepo;
 @property NSString *gitHubToken;
-@property uint previousCommitCount;
+@property uint previousCommits;
+@property (readwrite) uint totalCommits;
 
 @end
 
@@ -25,10 +26,12 @@
 {
     self = [super init];
     if (self) {
+        self.previousCommits = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousGitHubCommits"];
         self.totalCommits = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalGitHubCommits"];
         [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"totalGitHubCommits"];
-            self.totalCommits = 0;
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalCommits) forKey:@"previousGitHubCommits"];
+            self.previousCommits = self.totalCommits;
+            self.totalCommits = 0;  // So we send out an event on next poll.
         }];
         NSString *filepath = [@"~/Dropbox/code/telepath_github_token.txt" stringByExpandingTildeInPath];
         NSString *contents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
@@ -38,13 +41,15 @@
             self.gitHubUserName = lines[0];
             self.gitHubRepo = lines[1];
             self.gitHubToken = lines[2];
-            if([lines count] > 3)
-                self.previousCommitCount = [lines[3] intValue];
             self.pollTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(pollGitHub:) userInfo:nil repeats:YES];
             [self pollGitHub:nil];
         }
     }
     return self;
+}
+
+- (uint)currentCommits {
+    return self.totalCommits - self.previousCommits;
 }
 
 - (void)dealloc
@@ -64,11 +69,11 @@
         //NSLog(@"Got %lu contributors: %@", [contributors count], contributors);
         for(NSDictionary *contributor in contributors) {
             if(![contributor[@"author"][@"login"] isEqualToString:self.gitHubUserName]) continue;
-            uint newTotalCommits = [contributor[@"total"] intValue] - self.previousCommitCount;
+            uint newTotalCommits = [contributor[@"total"] intValue];
             if(newTotalCommits == self.totalCommits) return;
             self.totalCommits = newTotalCommits;
-            NSLog(@"Have total GitHub commits: %d", self.totalCommits);
-            [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityGitHub object:self userInfo:@{@"totalCommits": @(self.totalCommits)}];
+            NSLog(@"Have total GitHub commits: %d -- current %d", self.totalCommits, self.currentCommits);
+            [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityGitHub object:self userInfo:@{@"totalCommits": @(self.totalCommits), @"currentCommits": @(self.currentCommits)}];
             [[NSUserDefaults standardUserDefaults] setObject:@(self.totalCommits) forKey:@"totalGitHubCommits"];
         }
     }];

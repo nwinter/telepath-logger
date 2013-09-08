@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C8A1948E17DCE37700C0F7FC /* TPTrackerGitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */; };
+		C8A1949117DCF84100C0F7FC /* TPTrackerTrello.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949017DCF84100C0F7FC /* TPTrackerTrello.m */; };
 		C8F6325917D1053800330DFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F6325817D1053800330DFD /* Cocoa.framework */; };
 		C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8F6326117D1053800330DFD /* InfoPlist.strings */; };
 		C8F6326517D1053800330DFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F6326417D1053800330DFD /* main.m */; };
@@ -48,6 +49,8 @@
 /* Begin PBXFileReference section */
 		C8A1948C17DCE37700C0F7FC /* TPTrackerGitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerGitHub.h; sourceTree = "<group>"; };
 		C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerGitHub.m; sourceTree = "<group>"; };
+		C8A1948F17DCF84100C0F7FC /* TPTrackerTrello.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerTrello.h; sourceTree = "<group>"; };
+		C8A1949017DCF84100C0F7FC /* TPTrackerTrello.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerTrello.m; sourceTree = "<group>"; };
 		C8F6325517D1053800330DFD /* Telepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F6325817D1053800330DFD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C8F6325B17D1053800330DFD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -236,6 +239,8 @@
 				C8F632B317D26BC400330DFD /* TPTrackerCamera.m */,
 				C8A1948C17DCE37700C0F7FC /* TPTrackerGitHub.h */,
 				C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */,
+				C8A1948F17DCF84100C0F7FC /* TPTrackerTrello.h */,
+				C8A1949017DCF84100C0F7FC /* TPTrackerTrello.m */,
 			);
 			name = Trackers;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				C8F6329817D109C200330DFD /* TPLightSensor.m in Sources */,
 				C8FACFAF17DBCCE0005182E6 /* TPWindow.m in Sources */,
 				C8F632A817D26B8700330DFD /* TPTrackerKeyboard.m in Sources */,
+				C8A1949117DCF84100C0F7FC /* TPTrackerTrello.m in Sources */,
 				C8F632AB17D26B9000330DFD /* TPTrackerMouse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
