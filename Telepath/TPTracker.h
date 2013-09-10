@@ -19,6 +19,7 @@ extern NSString * const TPActivityGitHub;
 extern NSString * const TPActivityTrello;
 extern NSString * const TPActivityBrunchBuild;
 extern NSString * const TPActivityEmail;
+extern NSString * const TPActivityWorkHours;
 extern NSString * const TPActivityClearTotals;
 
 @interface TPTracker : NSObject

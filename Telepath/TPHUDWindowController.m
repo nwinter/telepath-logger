@@ -77,10 +77,8 @@
     [nc addObserver:self selector:@selector(onActivityTrello:) name:TPActivityTrello object:nil];
     [nc addObserver:self selector:@selector(onActivityBrunchBuild:) name:TPActivityBrunchBuild object:nil];
     [nc addObserver:self selector:@selector(onActivityEmail:) name:TPActivityEmail object:nil];
+    [nc addObserver:self selector:@selector(onActivityWorkHours:) name:TPActivityWorkHours object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
-    //nc.addObserver_selector_name_object_(listener, 'getSong:', 'com.apple.iTunes.playerInfo', None)
-    //nc.addObserver_selector_name_object_(listener, 'getEvent:', 'com.telepath.Telepath.TrackerEvent', None)
 
     [self setUpActivityBox];
     self.tracker = [TPTracker new];
@@ -149,6 +147,15 @@
     [self.unreadEmailsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"unreadEmails"]]];
 }
 
+- (void)onActivityWorkHours:(NSNotification *)note {
+    float sessionHours = [note.userInfo[@"sessionHours"] floatValue];
+    float dayHours = [note.userInfo[@"dayHours"] floatValue];
+    float weekHours = [note.userInfo[@"weekHours"] floatValue];
+    [self.sessionHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)sessionHours, (int)(60 * sessionHours) % 60]];
+    [self.dayHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)dayHours, (int)(60 * dayHours) % 60]];
+    [self.weekHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)weekHours, (int)(60 * weekHours) % 60]];
+}
+
 - (void)updateTime:(NSTimer *)timer {
     NSDate *date = [NSDate date];
     NSDateFormatter *dayFormat = [NSDateFormatter new];
@@ -158,7 +165,6 @@
     [self.timeLabel setStringValue:[timeFormat stringFromDate:date]];
     [self.dayLabel setStringValue:[dayFormat stringFromDate:date]];
 }
-
 
 - (void)setUpActivityBox {
     NSArray *pastActivities = [[NSUserDefaults standardUserDefaults] arrayForKey:@"activities"];
@@ -198,17 +204,6 @@
 - (IBAction)onRandomStatsClearClicked:(id)sender {
     NSLog(@"Clear totals!");
     [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityClearTotals object:self userInfo:nil];
-}
-
-#pragma mark - External notifications
-
-- (void)onWorkChanged:(NSNotification *)note {
-    float sessionHours = [note.userInfo[@"sessionHours"] floatValue];
-    float dayHours = [note.userInfo[@"dayHours"] floatValue];
-    float weekHours = [note.userInfo[@"weekHours"] floatValue];
-    [self.sessionHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)sessionHours, (int)(60 * sessionHours) % 60]];
-    [self.dayHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)dayHours, (int)(60 * dayHours) % 60]];
-    [self.weekHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)weekHours, (int)(60 * weekHours) % 60]];
 }
 
 @end

@@ -96,7 +96,7 @@
         [self.camera stopSession];  // Hack: since sometimes the camera dies, we stop and restart it every time this happens.
         self.started = NO;
     }
-    else if(countdown < 10) {
+    else if(NO && countdown < 10) {
         float oldImageRatio = (snapshotsTaken % 4) ? 1 / countdown / [self.images count] : 0;
         for(NSImage *oldImage in self.images)
             image = [self mergeImage:image withImage:oldImage withRatio:oldImageRatio];

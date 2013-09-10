@@ -12,6 +12,7 @@
 		C8A1949417DD145100C0F7FC /* TPTrackerBrunchBuilds.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */; };
 		C8A1949717DD272E00C0F7FC /* TPTrackerEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */; };
 		C8A1949917DD28A900C0F7FC /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A1949817DD28A900C0F7FC /* PubSub.framework */; };
+		C8A1949C17DEDDCC00C0F7FC /* TPTrackerWorkHours.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */; };
 		C8F6325917D1053800330DFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F6325817D1053800330DFD /* Cocoa.framework */; };
 		C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8F6326117D1053800330DFD /* InfoPlist.strings */; };
 		C8F6326517D1053800330DFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F6326417D1053800330DFD /* main.m */; };
@@ -59,6 +60,8 @@
 		C8A1949517DD272E00C0F7FC /* TPTrackerEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerEmail.h; sourceTree = "<group>"; };
 		C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerEmail.m; sourceTree = "<group>"; };
 		C8A1949817DD28A900C0F7FC /* PubSub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubSub.framework; path = System/Library/Frameworks/PubSub.framework; sourceTree = SDKROOT; };
+		C8A1949A17DEDDCC00C0F7FC /* TPTrackerWorkHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerWorkHours.h; sourceTree = "<group>"; };
+		C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerWorkHours.m; sourceTree = "<group>"; };
 		C8F6325517D1053800330DFD /* Telepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F6325817D1053800330DFD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C8F6325B17D1053800330DFD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -255,6 +258,8 @@
 				C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */,
 				C8A1949517DD272E00C0F7FC /* TPTrackerEmail.h */,
 				C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */,
+				C8A1949A17DEDDCC00C0F7FC /* TPTrackerWorkHours.h */,
+				C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */,
 			);
 			name = Trackers;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				C8F632A517D26AD600330DFD /* TPTracker.m in Sources */,
 				C8F6326517D1053800330DFD /* main.m in Sources */,
 				C8A1949717DD272E00C0F7FC /* TPTrackerEmail.m in Sources */,
+				C8A1949C17DEDDCC00C0F7FC /* TPTrackerWorkHours.m in Sources */,
 				C8F632B417D26BC400330DFD /* TPTrackerCamera.m in Sources */,
 				C8F632B817D26D8B00330DFD /* TPUtilities.m in Sources */,
 				C8A1948E17DCE37700C0F7FC /* TPTrackerGitHub.m in Sources */,

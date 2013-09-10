@@ -17,6 +17,7 @@
 #import "TPTrackerTrello.h"
 #import "TPTrackerBrunchBuilds.h"
 #import "TPTrackerEmail.h"
+#import "TPTrackerWorkHours.h"
 #import "ImageSnap.h"
 
 @interface TPTracker ()
@@ -31,6 +32,7 @@
 @property TPTrackerTrello *trackerTrello;
 @property TPTrackerBrunchBuilds *trackerBrunchBuilds;
 @property TPTrackerEmail *trackerEmail;
+@property TPTrackerWorkHours *trackerWorkHours;
 
 /* Event logging */
 @property uint previousEvents;
@@ -56,6 +58,7 @@ NSString * const TPActivityGitHub = @"TPActivityGitHub";
 NSString * const TPActivityTrello = @"TPActivityTrello";
 NSString * const TPActivityBrunchBuild = @"TPActivityBrunchBuild";
 NSString * const TPActivityEmail = @"TPActivityEmail";
+NSString * const TPActivityWorkHours = @"TPActivityWorkHours";
 NSString * const TPActivityClearTotals = @"TPActivityClearTotals";
 
 /// We'll switch log files this often.
@@ -85,6 +88,7 @@ const double FILE_WRITE_INTERVAL = 1;
         self.trackerTrello = [TPTrackerTrello new];
         self.trackerBrunchBuilds = [TPTrackerBrunchBuilds new];
         self.trackerEmail = [TPTrackerEmail new];
+        self.trackerWorkHours = [TPTrackerWorkHours new];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalEvents"];
         [nc addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
