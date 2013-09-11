@@ -8,6 +8,7 @@
 
 #import "TPTrackerEmail.h"
 #import "TPTracker.h"
+#import "TPUtilities.h"
 
 @interface TPTrackerEmail ()
 @property NSTimer *pollTimer;
@@ -47,7 +48,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", @"livelily@gmail.com", self.veryBad];
     NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
-    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64Encoding]];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", base64ForData(authData)];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(connectionError) {

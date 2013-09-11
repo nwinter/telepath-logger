@@ -19,3 +19,6 @@ NSDictionary *dictionaryFromJSON(NSData *json);
 
 /// Shorthand: deserialize array to JSON.
 NSArray *arrayFromJSON(NSData *json);
+
+/// Could've sworn this was built in somewhere just a second ago.
+NSString *base64ForData(NSData *theData);

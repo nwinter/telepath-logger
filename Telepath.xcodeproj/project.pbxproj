@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C83B4D1817E11B57009F5DCC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83B4D1717E11B57009F5DCC /* QuartzCore.framework */; };
+		C83B4D1A17E11B81009F5DCC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83B4D1917E11B81009F5DCC /* IOKit.framework */; };
 		C8A1948E17DCE37700C0F7FC /* TPTrackerGitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */; };
 		C8A1949117DCF84100C0F7FC /* TPTrackerTrello.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949017DCF84100C0F7FC /* TPTrackerTrello.m */; };
 		C8A1949417DD145100C0F7FC /* TPTrackerBrunchBuilds.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */; };
 		C8A1949717DD272E00C0F7FC /* TPTrackerEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */; };
-		C8A1949917DD28A900C0F7FC /* PubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A1949817DD28A900C0F7FC /* PubSub.framework */; };
 		C8A1949C17DEDDCC00C0F7FC /* TPTrackerWorkHours.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */; };
 		C8F6325917D1053800330DFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F6325817D1053800330DFD /* Cocoa.framework */; };
 		C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8F6326117D1053800330DFD /* InfoPlist.strings */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C83B4D1717E11B57009F5DCC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C83B4D1917E11B81009F5DCC /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		C8A1948C17DCE37700C0F7FC /* TPTrackerGitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerGitHub.h; sourceTree = "<group>"; };
 		C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerGitHub.m; sourceTree = "<group>"; };
 		C8A1948F17DCF84100C0F7FC /* TPTrackerTrello.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerTrello.h; sourceTree = "<group>"; };
@@ -59,7 +62,6 @@
 		C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerBrunchBuilds.m; sourceTree = "<group>"; };
 		C8A1949517DD272E00C0F7FC /* TPTrackerEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerEmail.h; sourceTree = "<group>"; };
 		C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerEmail.m; sourceTree = "<group>"; };
-		C8A1949817DD28A900C0F7FC /* PubSub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PubSub.framework; path = System/Library/Frameworks/PubSub.framework; sourceTree = SDKROOT; };
 		C8A1949A17DEDDCC00C0F7FC /* TPTrackerWorkHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerWorkHours.h; sourceTree = "<group>"; };
 		C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerWorkHours.m; sourceTree = "<group>"; };
 		C8F6325517D1053800330DFD /* Telepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8A1949917DD28A900C0F7FC /* PubSub.framework in Frameworks */,
+				C83B4D1A17E11B81009F5DCC /* IOKit.framework in Frameworks */,
+				C83B4D1817E11B57009F5DCC /* QuartzCore.framework in Frameworks */,
 				C8F6329017D1057D00330DFD /* QTKit.framework in Frameworks */,
 				C8F6325917D1053800330DFD /* Cocoa.framework in Frameworks */,
 			);
@@ -153,7 +156,8 @@
 		C8F6325717D1053800330DFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C8A1949817DD28A900C0F7FC /* PubSub.framework */,
+				C83B4D1917E11B81009F5DCC /* IOKit.framework */,
+				C83B4D1717E11B57009F5DCC /* QuartzCore.framework */,
 				C8F6328F17D1057D00330DFD /* QTKit.framework */,
 				C8F6325817D1053800330DFD /* Cocoa.framework */,
 				C8F6327A17D1053800330DFD /* XCTest.framework */,
