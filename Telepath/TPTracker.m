@@ -18,6 +18,7 @@
 #import "TPTrackerBrunchBuilds.h"
 #import "TPTrackerEmail.h"
 #import "TPTrackerWorkHours.h"
+#import "TPTrackerScreen.h"
 #import "ImageSnap.h"
 
 @interface TPTracker ()
@@ -33,6 +34,7 @@
 @property TPTrackerBrunchBuilds *trackerBrunchBuilds;
 @property TPTrackerEmail *trackerEmail;
 @property TPTrackerWorkHours *trackerWorkHours;
+@property TPTrackerScreen *trackerScreen;
 
 /* Event logging */
 @property uint previousEvents;
@@ -47,6 +49,7 @@
 
 @end
 
+NSString * const TPActivityClearTotals = @"TPActivityClearTotals";
 NSString * const TPActivityAny = @"TPActivityAny";
 NSString * const TPActivityKeyboard = @"TPActivityKeyboard";
 NSString * const TPActivityKeyboardVeryBad = @"TPActivityKeyboardVeryBad";
@@ -59,7 +62,7 @@ NSString * const TPActivityTrello = @"TPActivityTrello";
 NSString * const TPActivityBrunchBuild = @"TPActivityBrunchBuild";
 NSString * const TPActivityEmail = @"TPActivityEmail";
 NSString * const TPActivityWorkHours = @"TPActivityWorkHours";
-NSString * const TPActivityClearTotals = @"TPActivityClearTotals";
+NSString * const TPActivityScreen = @"TPActivityScreen";
 
 /// We'll switch log files this often.
 const double FILE_SWITCH_INTERVAL = 1 * 24 * 60 * 60;
@@ -83,12 +86,14 @@ const double FILE_WRITE_INTERVAL = 1;
         self.trackerLight = [TPTrackerLight new];
         NSTimeInterval cameraRecordingInterval = 86400.0 / 30.0 / 60.0;  // Default: one minute per day at 30 FPS (1 shot every 48s)
         NSTimeInterval cameraPreviewInterval = 1 / 10.0;
+        //cameraRecordingInterval = 10;  // Testing: every 10s.
         self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
         self.trackerGitHub = [TPTrackerGitHub new];
         self.trackerTrello = [TPTrackerTrello new];
         self.trackerBrunchBuilds = [TPTrackerBrunchBuilds new];
         self.trackerEmail = [TPTrackerEmail new];
         self.trackerWorkHours = [TPTrackerWorkHours new];
+        self.trackerScreen = [[TPTrackerScreen alloc] initWithRecordingInterval:cameraRecordingInterval];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalEvents"];
         [nc addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -100,6 +105,7 @@ const double FILE_WRITE_INTERVAL = 1;
         [nc addObserver:self selector:@selector(onActivityWindow:) name:TPActivityWindow object:self.trackerWindow];
         [nc addObserver:self selector:@selector(onActivityLight:) name:TPActivityLight object:self.trackerLight];
         [nc addObserver:self selector:@selector(onActivityCamera:) name:TPActivityCamera object:self.trackerCamera];
+        [nc addObserver:self selector:@selector(onActivityScreen:) name:TPActivityScreen object:self.trackerScreen];
     }
     return self;
 }
@@ -148,19 +154,21 @@ const double FILE_WRITE_INTERVAL = 1;
 }
 
 - (void)onActivityCamera:(NSNotification *)note {
-    NSImage *image = note.userInfo[@"image"];
-    if(!image || YES) return;  // Don't save images for now
-    [self ensureOutputDirExists];
-	NSDate *date = [NSDate date];
-	unsigned long long ms = (long long)([date timeIntervalSince1970] * 1000);
-    NSString *filename = [NSString stringWithFormat:@"%@/%@-%.3d-Z.jpg", self.outputDir, [date descriptionWithCalendarFormat:@"%Y-%m-%d-%H-%M-%S" timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0] locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]], (int)(ms % 1000)];
-    [ImageSnap saveImage:image toPath:filename];
+    return;  // Don't save camera images for now
+    [self saveImage:note.userInfo[@"image"] withExtension:@"jpg"];
+}
+
+- (void)onActivityScreen:(NSNotification *)note {
+    [self saveImage:note.userInfo[@"image"] withExtension:@"jpg"];
 }
 
 #pragma mark - File writing
 
 - (void)ensureOutputDirExists {
-    self.outputDir = [@"~/Library/Application Support/Telepath/" stringByExpandingTildeInPath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:@"/volumes/Like Donkey Kong"])
+        self.outputDir = @"/volumes/Like Donkey Kong/Hog/Storage/Telepath/winter/Telepath";  // External drive has more space.
+    else
+        self.outputDir = [@"~/Library/Application Support/Telepath/" stringByExpandingTildeInPath];  // If you're not me.
 	[[NSFileManager defaultManager] createDirectoryAtPath:self.outputDir withIntermediateDirectories:YES attributes:nil error:nil];
 }
 
@@ -190,6 +198,15 @@ const double FILE_WRITE_INTERVAL = 1;
     NSData *logEntriesData = [logEntries dataUsingEncoding:NSUTF8StringEncoding];
     [self.logFile writeData:logEntriesData];
     [self.eventsToLog removeAllObjects];
+}
+
+- (void)saveImage:(NSImage *)image withExtension:(NSString *)extension {
+    if(!image) return;
+    [self ensureOutputDirExists];
+	NSDate *date = [NSDate date];
+	unsigned long long ms = (long long)([date timeIntervalSince1970] * 1000);
+    NSString *filename = [NSString stringWithFormat:@"%@/%@-%.3d-Z.%@", self.outputDir, [date descriptionWithCalendarFormat:@"%Y-%m-%d-%H-%M-%S" timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0] locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]], (int)(ms % 1000), extension];
+    [ImageSnap saveImage:image toPath:filename];
 }
 
 @end

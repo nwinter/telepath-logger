@@ -10,6 +10,7 @@
 #import "ImageSnap.h"
 #import "TPLightSensor.h"
 #import "TPTracker.h"
+#import <WebKit/WebKit.h>
 
 @interface TPHUDWindowController ()
 // Camera Area
@@ -41,6 +42,10 @@
 // Activity Area
 @property (weak) IBOutlet NSComboBox *activityBox;
 @property (weak) IBOutlet NSTextField *activityDetailField;
+
+// Timelapse Progress Area (or is it Percentile Feedback Area?)
+@property (weak) IBOutlet WebView *percentileFeedbackView;
+
 
 @property TPTracker *tracker;
 @property NSTimer *timeUpdateTimer;
@@ -82,6 +87,10 @@
 
     [self setUpActivityBox];
     self.tracker = [TPTracker new];
+    [self.percentileFeedbackView setMainFrameURL:@"http://www.nickwinter.net/codecombat-stats?just_graph=1"];
+    NSView *clipView = [[[self.percentileFeedbackView.mainFrame frameView] documentView] superview];
+    [clipView scaleUnitSquareToSize:NSMakeSize(0.55, 0.55)];
+    [clipView setNeedsDisplay:YES];
 }
 
 - (void)dealloc

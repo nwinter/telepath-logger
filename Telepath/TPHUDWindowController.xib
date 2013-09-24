@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4504" systemVersion="12E55" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="3336"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TPHUDWindowController">
@@ -19,6 +20,7 @@
                 <outlet property="dayLabel" destination="L3G-cs-qnm" id="wHe-mq-1rD"/>
                 <outlet property="keystrokesField" destination="F8f-eb-LhJ" id="34k-iT-nka"/>
                 <outlet property="mouseMovementsField" destination="fGa-Sk-bph" id="Gvd-8M-2BH"/>
+                <outlet property="percentileFeedbackView" destination="6S4-3T-fzt" id="L1V-pT-JI6"/>
                 <outlet property="recentKeysView" destination="LkJ-er-0Dt" id="7Vm-xw-cil"/>
                 <outlet property="sessionHoursLabel" destination="9Hd-rl-u6B" id="qL1-25-VrD"/>
                 <outlet property="timeLabel" destination="7Pe-5V-9ug" id="Jjf-ng-gwx"/>
@@ -535,7 +537,20 @@
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="524" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <webView translatesAutoresizingMaskIntoConstraints="NO" id="6S4-3T-fzt">
+                                    <rect key="frame" x="2" y="3" width="520" height="240"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                                </webView>
+                            </subviews>
                         </view>
+                        <constraints>
+                            <constraint firstItem="6S4-3T-fzt" firstAttribute="leading" secondItem="Phn-mn-KRc" secondAttribute="leading" id="AVI-s5-MYF"/>
+                            <constraint firstItem="6S4-3T-fzt" firstAttribute="top" secondItem="Phn-mn-KRc" secondAttribute="top" id="QPM-B3-EhZ"/>
+                            <constraint firstAttribute="trailing" secondItem="6S4-3T-fzt" secondAttribute="trailing" id="ViW-fv-FWQ"/>
+                            <constraint firstAttribute="bottom" secondItem="6S4-3T-fzt" secondAttribute="bottom" id="hcS-8Q-zyy"/>
+                        </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>

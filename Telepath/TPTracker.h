@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const TPActivityClearTotals;
 extern NSString * const TPActivityAny;
 extern NSString * const TPActivityKeyboard;
 extern NSString * const TPActivityKeyboardVeryBad;
@@ -20,7 +21,7 @@ extern NSString * const TPActivityTrello;
 extern NSString * const TPActivityBrunchBuild;
 extern NSString * const TPActivityEmail;
 extern NSString * const TPActivityWorkHours;
-extern NSString * const TPActivityClearTotals;
+extern NSString * const TPActivityScreen;
 
 @interface TPTracker : NSObject
 

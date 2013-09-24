@@ -81,8 +81,8 @@ const NSTimeInterval WINDOW_SAMPLE_RATE = 0.025;
         
         if(!justTopWindow)
             [event addObject:@(count)];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWindow object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"currentEvents": @(self.currentEvents)}];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWindow object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"currentEvents": @(self.currentEvents), @"currentWindowID": [entry objectForKey:(id)kCGWindowNumber], @"currentWindowBounds": [entry objectForKey:(id)kCGWindowBounds]}];
         [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalWindowEvents"];
         if(count++ == 0) {
             self.lastWindowName = windowName;
