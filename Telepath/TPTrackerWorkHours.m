@@ -76,7 +76,7 @@
 }
 
 - (void)postUpdate {
-    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWorkHours object:self userInfo:@{@"sessionHours": @(self.sessionHours), @"dayHours": @(self.dayHours), @"weekHours": @(self.weekHours)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityWorkHours object:self userInfo:@{@"sessionHours": @(self.sessionHours), @"dayHours": @(self.dayHours), @"weekHours": @(self.weekHours), @"working": @(self.working)}];
 }
 
 @end

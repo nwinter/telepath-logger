@@ -83,6 +83,7 @@
     [nc addObserver:self selector:@selector(onActivityBrunchBuild:) name:TPActivityBrunchBuild object:nil];
     [nc addObserver:self selector:@selector(onActivityEmail:) name:TPActivityEmail object:nil];
     [nc addObserver:self selector:@selector(onActivityWorkHours:) name:TPActivityWorkHours object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
 
     [self setUpActivityBox];
@@ -163,6 +164,10 @@
     [self.sessionHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)sessionHours, (int)(60 * sessionHours) % 60]];
     [self.dayHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)dayHours, (int)(60 * dayHours) % 60]];
     [self.weekHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)weekHours, (int)(60 * weekHours) % 60]];
+}
+
+- (void)onWorkChanged:(NSNotification *)note {
+    [self.percentileFeedbackView reload:nil];
 }
 
 - (void)updateTime:(NSTimer *)timer {
