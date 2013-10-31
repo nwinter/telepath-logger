@@ -14,6 +14,7 @@
 		C8A1949417DD145100C0F7FC /* TPTrackerBrunchBuilds.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */; };
 		C8A1949717DD272E00C0F7FC /* TPTrackerEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */; };
 		C8A1949C17DEDDCC00C0F7FC /* TPTrackerWorkHours.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */; };
+		C8AF4BF518221E870007835F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8AF4BF418221E870007835F /* ApplicationServices.framework */; };
 		C8E5F62717E8186E00129E0D /* TPTrackerScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */; };
 		C8E9BEE417EEA27100049672 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E9BEE317EEA27100049672 /* WebKit.framework */; };
 		C8F6325917D1053800330DFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F6325817D1053800330DFD /* Cocoa.framework */; };
@@ -66,6 +67,7 @@
 		C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerEmail.m; sourceTree = "<group>"; };
 		C8A1949A17DEDDCC00C0F7FC /* TPTrackerWorkHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerWorkHours.h; sourceTree = "<group>"; };
 		C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerWorkHours.m; sourceTree = "<group>"; };
+		C8AF4BF418221E870007835F /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		C8E5F62517E8186E00129E0D /* TPTrackerScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerScreen.h; sourceTree = "<group>"; };
 		C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerScreen.m; sourceTree = "<group>"; };
 		C8E9BEE317EEA27100049672 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -120,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8AF4BF518221E870007835F /* ApplicationServices.framework in Frameworks */,
 				C8E9BEE417EEA27100049672 /* WebKit.framework in Frameworks */,
 				C83B4D1A17E11B81009F5DCC /* IOKit.framework in Frameworks */,
 				C83B4D1817E11B57009F5DCC /* QuartzCore.framework in Frameworks */,
@@ -162,6 +165,7 @@
 		C8F6325717D1053800330DFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8AF4BF418221E870007835F /* ApplicationServices.framework */,
 				C8E9BEE317EEA27100049672 /* WebKit.framework */,
 				C83B4D1917E11B81009F5DCC /* IOKit.framework */,
 				C83B4D1717E11B57009F5DCC /* QuartzCore.framework */,

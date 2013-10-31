@@ -14,6 +14,7 @@
     QTCaptureSession                    *mCaptureSession;
     QTCaptureDeviceInput                *mCaptureDeviceInput;
     QTCaptureDecompressedVideoOutput    *mCaptureDecompressedVideoOutput;
+    QTCaptureVideoPreviewOutput         *mCaptureVideoPreviewOutput;
     CVImageBufferRef                    mCurrentImageBuffer;
 }
 

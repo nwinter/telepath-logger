@@ -9,6 +9,7 @@
 #import "TPTrackerKeyboard.h"
 #import "TPUtilities.h"
 #import "TPTracker.h"
+#include <ApplicationServices/ApplicationServices.h>
 
 @interface TPTrackerKeyboard ()
 @property NSMutableString *recentCharacters;
@@ -32,6 +33,10 @@
         self.recentCharacters = [NSMutableString new];
         [self loadModifierKeys];
         [self loadReallyBadStuff];
+        
+        NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
+        BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
+        NSLog(@"Accessibility is enabled? %d", accessibilityEnabled);
 
         uint logMask = (NSKeyDownMask|NSKeyUpMask|NSFlagsChangedMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];

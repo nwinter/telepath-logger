@@ -85,7 +85,8 @@ const double FILE_WRITE_INTERVAL = 1;
         self.trackerWindow = [TPTrackerWindow new];
         self.trackerLight = [TPTrackerLight new];
         NSTimeInterval cameraRecordingInterval = 86400.0 / 30.0 / 60.0;  // Default: one minute per day at 30 FPS (1 shot every 48s)
-        NSTimeInterval cameraPreviewInterval = 1 / 10.0;
+        //NSTimeInterval cameraPreviewInterval = 1 / 10.0;
+        NSTimeInterval cameraPreviewInterval = 1 / 2.0;
         //cameraRecordingInterval = 10;  // Testing: every 10s.
         self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
         self.trackerGitHub = [TPTrackerGitHub new];
@@ -134,7 +135,8 @@ const double FILE_WRITE_INTERVAL = 1;
     [self.eventsToLog addObject:JSONRepresentation(event)];
     [[NSUserDefaults standardUserDefaults] setObject:@(++self.totalEvents) forKey:@"totalEvents"];
     [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityAny object:self];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"net.nickwinter.Telepath.TrackerEvent" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:event, @"event", nil]];
+    // Distributed notifications got really slow in 10.9?
+    //[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"net.nickwinter.Telepath.TrackerEvent" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:event, @"event", nil]];
 }
 
 - (void)onActivityKeyboard:(NSNotification *)note {
@@ -165,8 +167,9 @@ const double FILE_WRITE_INTERVAL = 1;
 #pragma mark - File writing
 
 - (void)ensureOutputDirExists {
-    if([[NSFileManager defaultManager] fileExistsAtPath:@"/volumes/Like Donkey Kong"])
-        self.outputDir = @"/volumes/Like Donkey Kong/Hog/Storage/Telepath/winter/Telepath";  // External drive has more space.
+    NSString *path = [@"~/Desktop/Hog/Storage/Telepath/winter/Telepath" stringByExpandingTildeInPath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:path])
+        self.outputDir = path;
     else
         self.outputDir = [@"~/Library/Application Support/Telepath/" stringByExpandingTildeInPath];  // If you're not me.
 	[[NSFileManager defaultManager] createDirectoryAtPath:self.outputDir withIntermediateDirectories:YES attributes:nil error:nil];

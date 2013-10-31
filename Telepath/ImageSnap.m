@@ -38,6 +38,7 @@ NSString *VERSION = @"0.2.5";
     mCaptureSession = nil;
     mCaptureDeviceInput = nil;
     mCaptureDecompressedVideoOutput = nil;
+    mCaptureVideoPreviewOutput = nil;
 	mCurrentImageBuffer = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDeviceDisconnected:) name:QTCaptureDeviceWasDisconnectedNotification object:nil];
 	return self;
@@ -48,6 +49,7 @@ NSString *VERSION = @"0.2.5";
 	if( mCaptureSession )					[mCaptureSession release];
 	if( mCaptureDeviceInput )				[mCaptureDeviceInput release];
 	if( mCaptureDecompressedVideoOutput )	[mCaptureDecompressedVideoOutput release];
+	if( mCaptureVideoPreviewOutput )	    [mCaptureVideoPreviewOutput release];
     CVBufferRelease(mCurrentImageBuffer);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
@@ -314,10 +316,12 @@ NSString *VERSION = @"0.2.5";
             if( mCaptureSession )					[mCaptureSession release];
             if( mCaptureDeviceInput )				[mCaptureDeviceInput release];
             if( mCaptureDecompressedVideoOutput )	[mCaptureDecompressedVideoOutput release];
+            if( mCaptureVideoPreviewOutput )	    [mCaptureVideoPreviewOutput release];
             
             mCaptureSession = nil;
             mCaptureDeviceInput = nil;
             mCaptureDecompressedVideoOutput = nil;
+            mCaptureVideoPreviewOutput = nil;
         }   // end if: stopped
         
     }   // end while: not stopped
@@ -377,22 +381,38 @@ NSString *VERSION = @"0.2.5";
 	}
     
 	
-	// Decompressed video output
-	verbose( "\tCreating QTCaptureDecompressedVideoOutput...");
-	mCaptureDecompressedVideoOutput = [[QTCaptureDecompressedVideoOutput alloc] init];
-	[mCaptureDecompressedVideoOutput setDelegate:self];
+//	// Decompressed video output
+//	verbose( "\tCreating QTCaptureDecompressedVideoOutput...");
+//	mCaptureDecompressedVideoOutput = [[QTCaptureDecompressedVideoOutput alloc] init];
+//	[mCaptureDecompressedVideoOutput setDelegate:self];
+//	verbose( "Done.\n" );
+//	if (![mCaptureSession addOutput:mCaptureDecompressedVideoOutput error:&error]) {
+//		error( "\tCould not create decompressed output.\n");
+//        [mCaptureSession release];
+//        [mCaptureDeviceInput release];
+//        [mCaptureDecompressedVideoOutput release];
+//        mCaptureSession = nil;
+//        mCaptureDeviceInput = nil;
+//        mCaptureDecompressedVideoOutput = nil;
+//		return NO;
+//	}
+
+	// Preview video output
+	verbose( "\tCreating QTCaptureVideoPreviewOutput...");
+	mCaptureVideoPreviewOutput = [[QTCaptureVideoPreviewOutput alloc] init];
+	[mCaptureVideoPreviewOutput setDelegate:self];
 	verbose( "Done.\n" );
-	if (![mCaptureSession addOutput:mCaptureDecompressedVideoOutput error:&error]) {
+	if (![mCaptureSession addOutput:mCaptureVideoPreviewOutput error:&error]) {
 		error( "\tCould not create decompressed output.\n");
         [mCaptureSession release];
         [mCaptureDeviceInput release];
-        [mCaptureDecompressedVideoOutput release];
+        [mCaptureVideoPreviewOutput release];
         mCaptureSession = nil;
         mCaptureDeviceInput = nil;
-        mCaptureDecompressedVideoOutput = nil;
+        mCaptureVideoPreviewOutput = nil;
 		return NO;
 	}
-
+    
     // Clear old image?
 	verbose("\tEntering synchronized block to clear memory...");
     @synchronized(self){
