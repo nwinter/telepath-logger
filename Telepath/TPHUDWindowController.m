@@ -50,6 +50,7 @@
 @property TPTracker *tracker;
 @property NSTimer *timeUpdateTimer;
 @property NSString *currentActivity;
+@property BOOL isWorking;
 
 @end
 
@@ -90,7 +91,7 @@
     self.tracker = [TPTracker new];
     [self.percentileFeedbackView setMainFrameURL:@"http://www.nickwinter.net/codecombat-stats?just_graph=1"];
     NSView *clipView = [[[self.percentileFeedbackView.mainFrame frameView] documentView] superview];
-    [clipView scaleUnitSquareToSize:NSMakeSize(0.55, 0.55)];
+    [clipView scaleUnitSquareToSize:NSMakeSize(0.45, 0.55)];
     [clipView setNeedsDisplay:YES];
 }
 
@@ -164,6 +165,12 @@
     [self.sessionHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)sessionHours, (int)(60 * sessionHours) % 60]];
     [self.dayHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)dayHours, (int)(60 * dayHours) % 60]];
     [self.weekHoursLabel setStringValue:[NSString stringWithFormat:@"%d:%02d", (int)weekHours, (int)(60 * weekHours) % 60]];
+    BOOL working = [note.userInfo[@"working"] boolValue];
+    if(self.isWorking != working) {
+        self.isWorking = working;
+        NSSound *listen = [NSSound soundNamed:@"listen"];
+        [listen play];
+    }
 }
 
 - (void)onWorkChanged:(NSNotification *)note {

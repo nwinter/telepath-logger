@@ -38,16 +38,16 @@
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" stationary="YES"/>
             <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="2560" height="240"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="2661" height="240"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
             <value key="minSize" type="size" width="2480" height="240"/>
             <value key="maxSize" type="size" width="2560" height="240"/>
             <view key="contentView" id="xgf-Fb-N1q">
-                <rect key="frame" x="0.0" y="0.0" width="2560" height="240"/>
+                <rect key="frame" x="0.0" y="0.0" width="2661" height="240"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejd-tL-d3F">
-                        <rect key="frame" x="1066" y="0.0" width="427" height="240"/>
+                        <rect key="frame" x="1117" y="0.0" width="427" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="427" id="5PH-gb-ghG"/>
@@ -56,11 +56,8 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="WebcamDefaultImage" id="Qtd-in-8AW"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Vu-xC-3RR">
-                        <rect key="frame" x="1459" y="0.0" width="36" height="17"/>
+                        <rect key="frame" x="1533" y="223" width="13" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="32" id="Cek-5X-A4E"/>
-                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" placeholderString="" id="IYR-n8-xAP">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" red="0.1346370234" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,17 +65,17 @@
                         </textFieldCell>
                     </textField>
                     <box autoresizesSubviews="NO" title="Slow-Mo Message Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="55F-zi-FB3">
-                        <rect key="frame" x="-3" y="-4" width="470" height="246"/>
+                        <rect key="frame" x="-3" y="-4" width="523" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="468" height="229"/>
+                            <rect key="frame" x="1" y="1" width="521" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Random Stats Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="aU6-08-gFC" userLabel="Box - Random Stats Area">
-                        <rect key="frame" x="461" y="-4" width="206" height="246"/>
+                        <rect key="frame" x="514" y="-4" width="206" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="204" height="229"/>
@@ -283,14 +280,14 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Keyboard Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="FeV-Hr-1Aa" userLabel="Box - Keyboard Area">
-                        <rect key="frame" x="661" y="-4" width="207" height="246"/>
+                        <rect key="frame" x="714" y="-4" width="206" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="205" height="229"/>
+                            <rect key="frame" x="1" y="1" width="204" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L5t-Kp-xoN">
-                                    <rect key="frame" x="0.0" y="199" width="205" height="29"/>
+                                    <rect key="frame" x="0.0" y="199" width="204" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Window" id="o8R-Zj-fb1">
                                         <font key="font" size="24" name="LucidaGrande"/>
@@ -299,7 +296,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B4o-mL-HhF">
-                                    <rect key="frame" x="0.0" y="182" width="205" height="17"/>
+                                    <rect key="frame" x="0.0" y="182" width="204" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Document" id="CDi-iv-bd8">
                                         <font key="font" metaFont="system"/>
@@ -308,27 +305,27 @@
                                     </textFieldCell>
                                 </textField>
                                 <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Lxe-Xg-OWG">
-                                    <rect key="frame" x="2" y="179" width="201" height="5"/>
+                                    <rect key="frame" x="2" y="179" width="200" height="5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2K-lD-4dt">
-                                    <rect key="frame" x="2" y="3" width="201" height="178"/>
+                                    <rect key="frame" x="2" y="3" width="200" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="yf9-uz-z1A">
-                                        <rect key="frame" x="1" y="1" width="199" height="176"/>
+                                        <rect key="frame" x="1" y="1" width="198" height="176"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="LkJ-er-0Dt">
-                                                <rect key="frame" x="0.0" y="0.0" width="199" height="176"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="198" height="176"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="199" height="176"/>
+                                                <size key="minSize" width="198" height="176"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="199" height="176"/>
+                                                <size key="minSize" width="198" height="176"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                             </textView>
                                         </subviews>
@@ -339,7 +336,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5bg-Qw-iIH">
-                                        <rect key="frame" x="184" y="1" width="16" height="176"/>
+                                        <rect key="frame" x="183" y="1" width="16" height="176"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
@@ -364,14 +361,14 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Activity Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="OOn-yh-xsL" userLabel="Box - Activity Area">
-                        <rect key="frame" x="862" y="-4" width="207" height="246"/>
+                        <rect key="frame" x="914" y="-4" width="206" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="205" height="229"/>
+                            <rect key="frame" x="1" y="1" width="204" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AmK-LO-Hkd">
-                                    <rect key="frame" x="2" y="181" width="204" height="53"/>
+                                    <rect key="frame" x="2" y="181" width="203" height="53"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" buttonBordered="NO" numberOfVisibleItems="5" id="vCo-yp-IEh">
                                         <font key="font" size="36" name="LucidaGrande"/>
@@ -380,7 +377,7 @@
                                     </comboBoxCell>
                                 </comboBox>
                                 <textField verticalHuggingPriority="749" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vLf-xi-gKT">
-                                    <rect key="frame" x="2" y="3" width="201" height="182"/>
+                                    <rect key="frame" x="2" y="3" width="200" height="182"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="V0Z-M2-Qhh">
                                         <font key="font" size="24" name="LucidaGrande"/>
@@ -406,14 +403,14 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Time Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="6V9-iO-AJn" userLabel="Box - Time Area">
-                        <rect key="frame" x="1490" y="-4" width="207" height="246"/>
+                        <rect key="frame" x="1541" y="-4" width="206" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="205" height="229"/>
+                            <rect key="frame" x="1" y="1" width="204" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fR3-DE-PRj">
-                                    <rect key="frame" x="0.0" y="200" width="205" height="29"/>
+                                    <rect key="frame" x="0.0" y="200" width="204" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Wednesday" id="L3G-cs-qnm">
                                         <font key="font" size="24" name="LucidaGrande"/>
@@ -422,7 +419,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="drU-It-7ne">
-                                    <rect key="frame" x="0.0" y="156" width="205" height="44"/>
+                                    <rect key="frame" x="0.0" y="156" width="204" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="10:32 AM" id="7Pe-5V-9ug">
                                         <font key="font" size="36" name="LucidaGrande"/>
@@ -512,34 +509,34 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Biometrics Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="lWl-uw-81m" userLabel="Box - Biometrics Area">
-                        <rect key="frame" x="1691" y="-4" width="207" height="246"/>
+                        <rect key="frame" x="1741" y="-4" width="206" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="205" height="229"/>
+                            <rect key="frame" x="1" y="1" width="204" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Affect Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="4J9-aO-pdz" userLabel="Box - Affect Area">
-                        <rect key="frame" x="1892" y="-4" width="207" height="246"/>
+                        <rect key="frame" x="1941" y="-4" width="206" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="205" height="229"/>
+                            <rect key="frame" x="1" y="1" width="204" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Timelapse Progress Area" borderType="line" titlePosition="aboveTop" translatesAutoresizingMaskIntoConstraints="NO" id="Phn-mn-KRc" userLabel="Box - Timelapse Progress Area">
-                        <rect key="frame" x="2093" y="-4" width="470" height="246"/>
+                        <rect key="frame" x="2141" y="-4" width="523" height="246"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="468" height="229"/>
+                            <rect key="frame" x="1" y="1" width="521" height="229"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <webView translatesAutoresizingMaskIntoConstraints="NO" id="6S4-3T-fzt">
-                                    <rect key="frame" x="2" y="3" width="464" height="240"/>
+                                    <rect key="frame" x="2" y="3" width="517" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                                         <nil key="identifier"/>
@@ -561,9 +558,9 @@
                     <constraint firstAttribute="bottom" secondItem="FeV-Hr-1Aa" secondAttribute="bottom" id="0gJ-Uj-P3N"/>
                     <constraint firstItem="4J9-aO-pdz" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="3QS-a8-jyC"/>
                     <constraint firstItem="4J9-aO-pdz" firstAttribute="leading" secondItem="lWl-uw-81m" secondAttribute="trailing" id="3U6-NN-rWf"/>
-                    <constraint firstAttribute="bottom" secondItem="9Vu-xC-3RR" secondAttribute="bottom" id="4dA-xN-B4h"/>
                     <constraint firstAttribute="bottom" secondItem="55F-zi-FB3" secondAttribute="bottom" id="5aw-1c-M9c"/>
                     <constraint firstItem="6V9-iO-AJn" firstAttribute="leading" secondItem="ejd-tL-d3F" secondAttribute="trailing" id="5ud-XO-ImF"/>
+                    <constraint firstItem="9Vu-xC-3RR" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="9I3-iG-M3Z"/>
                     <constraint firstAttribute="bottom" secondItem="aU6-08-gFC" secondAttribute="bottom" id="B1m-Hd-5Gc"/>
                     <constraint firstItem="FeV-Hr-1Aa" firstAttribute="width" secondItem="aU6-08-gFC" secondAttribute="width" id="BHT-aQ-0Gg"/>
                     <constraint firstItem="ejd-tL-d3F" firstAttribute="top" secondItem="xgf-Fb-N1q" secondAttribute="top" id="D0u-XH-Arn"/>

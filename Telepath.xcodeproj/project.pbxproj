@@ -17,6 +17,7 @@
 		C8AF4BF518221E870007835F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8AF4BF418221E870007835F /* ApplicationServices.framework */; };
 		C8E5F62717E8186E00129E0D /* TPTrackerScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */; };
 		C8E9BEE417EEA27100049672 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E9BEE317EEA27100049672 /* WebKit.framework */; };
+		C8EBF4B6182BF43D00D33029 /* listen.wav in Resources */ = {isa = PBXBuildFile; fileRef = C8EBF4B5182BF43D00D33029 /* listen.wav */; };
 		C8F6325917D1053800330DFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F6325817D1053800330DFD /* Cocoa.framework */; };
 		C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8F6326117D1053800330DFD /* InfoPlist.strings */; };
 		C8F6326517D1053800330DFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F6326417D1053800330DFD /* main.m */; };
@@ -71,6 +72,7 @@
 		C8E5F62517E8186E00129E0D /* TPTrackerScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerScreen.h; sourceTree = "<group>"; };
 		C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerScreen.m; sourceTree = "<group>"; };
 		C8E9BEE317EEA27100049672 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C8EBF4B5182BF43D00D33029 /* listen.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = listen.wav; sourceTree = "<group>"; };
 		C8F6325517D1053800330DFD /* Telepath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F6325817D1053800330DFD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C8F6325B17D1053800330DFD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -143,6 +145,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8EBF4B7182BF44D00D33029 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C8EBF4B5182BF43D00D33029 /* listen.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		C8F6324C17D1053700330DFD = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +215,7 @@
 				C8F632B617D26D8B00330DFD /* TPUtilities.h */,
 				C8F632B717D26D8B00330DFD /* TPUtilities.m */,
 				C8F6327317D1053800330DFD /* Images.xcassets */,
+				C8EBF4B7182BF44D00D33029 /* Sounds */,
 				C8F6327017D1053800330DFD /* Telepath.xcdatamodeld */,
 				C8F6325F17D1053800330DFD /* Supporting Files */,
 			);
@@ -359,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */,
+				C8EBF4B6182BF43D00D33029 /* listen.wav in Resources */,
 				C8F6327417D1053800330DFD /* Images.xcassets in Resources */,
 				C8F6329517D1074200330DFD /* TPHUDWindowController.xib in Resources */,
 				C8F6326917D1053800330DFD /* Credits.rtf in Resources */,
