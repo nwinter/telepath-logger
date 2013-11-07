@@ -69,7 +69,7 @@
     }
     
     // CGRectInfinite to grab all of all screens
-    CGRect topScreen = CGRectMake(0, -1600, 2560, 1600);  // Assume top screen of 2560x1600 is left-aligned with main screen of 1920x1200
+    CGRect topScreen = CGRectMake(0, -1600, 2560, 1600);  // Assume top screen of 2560x1600 is left-aligned and below main screen (of 2560x1600)
     CGImageRef screenshot = CGWindowListCreateImage(topScreen, kCGWindowListOptionOnScreenOnly, kCGNullWindowID, kCGWindowImageDefault);
     NSImage *image = [self imageFromCGImageRef:screenshot];
     CGImageRelease(screenshot);

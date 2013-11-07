@@ -82,15 +82,16 @@
     NSTimeInterval t = now();
     if(!self.started)
         [self.camera startSession:[ImageSnap defaultVideoDevice]];
-    NSImage *largeImage = [self.camera snapshot];
-    if(!largeImage) return;
-    NSImage *image = [self cropImage:largeImage toSize:NSMakeSize(largeImage.size.width * self.cropRatio, largeImage.size.height * self.cropRatio)];
+    NSImage *image = [self.camera snapshot];
+    if(!image) return;
     static int snapshotsTaken = 0;
     ++snapshotsTaken;
     NSTimeInterval countdown = self.recordingInterval - (t - self.lastSnapshotTime);
     if(countdown <= 0 || ![self.images count]) {
+        //NSImage *savedImage = [self cropImage:image toSize:NSMakeSize(image.size.width * self.cropRatio, image.size.height * self.cropRatio)];
+        NSImage *savedImage = image;
         self.lastSnapshotTime = t;
-        [self.images addObject:image];
+        [self.images addObject:savedImage];
         if([self.images count] > 3)
             [self.images removeObjectAtIndex:0];
         [self.camera stopSession];  // Hack: since sometimes the camera dies, we stop and restart it every time this happens.
