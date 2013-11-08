@@ -106,12 +106,12 @@ const NSTimeInterval WINDOW_SAMPLE_RATE = 0.025;
     else
         return nil;  // not an Apple-scriptable browser, like Firefox: http://stackoverflow.com/questions/17846948/does-firefox-offer-applescript-support-to-get-url-of-windows
     
-    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:[NSString stringWithFormat:@"tell application \"%@\" to return URL of %@ as string", ownerName, tabName]];
+    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:[NSString stringWithFormat:@"tell application \"%@\" to return URL of %@", ownerName, tabName]];
     NSDictionary *scriptError = nil;
     NSString *result = nil;
     NSAppleEventDescriptor *descriptor = [script executeAndReturnError:&scriptError];
     if(scriptError)
-        NSLog(@"Error: %@", scriptError);
+        ;//NSLog(@"Error: %@", scriptError);  // doesn't work any more; oh well
     else {
         NSAppleEventDescriptor *unicode = [descriptor coerceToDescriptorType:typeUnicodeText];
         NSData *data = [unicode data];

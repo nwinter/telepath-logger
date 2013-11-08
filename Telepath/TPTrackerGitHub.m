@@ -17,6 +17,10 @@
 @property NSString *gitHubToken;
 @property uint previousCommits;
 @property (readwrite) uint totalCommits;
+@property uint previousAdditions;
+@property (readwrite) uint totalAdditions;
+@property uint previousDeletions;
+@property (readwrite) uint totalDeletions;
 
 @end
 
@@ -28,9 +32,17 @@
     if (self) {
         self.previousCommits = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousGitHubCommits"];
         self.totalCommits = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalGitHubCommits"];
+        self.previousAdditions = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousGitHubAdditions"];
+        self.totalAdditions = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalGitHubAdditions"];
+        self.previousDeletions = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousGitHubDeletions"];
+        self.totalDeletions = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalGitHubDeletions"];
         [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
             [[NSUserDefaults standardUserDefaults] setObject:@(self.totalCommits) forKey:@"previousGitHubCommits"];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalAdditions) forKey:@"previousGitHubAdditions"];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalDeletions) forKey:@"previousGitHubCDeletions"];
             self.previousCommits = self.totalCommits;
+            self.previousAdditions = self.totalAdditions;
+            self.previousDeletions = self.totalDeletions;
             self.totalCommits = 0;  // So we send out an event on next poll.
         }];
         NSString *filepath = [@"~/Dropbox/code/telepath_github_token.txt" stringByExpandingTildeInPath];
@@ -52,8 +64,15 @@
     return self.totalCommits - self.previousCommits;
 }
 
-- (void)dealloc
-{
+- (uint)currentAdditions {
+    return self.totalAdditions - self.previousAdditions;
+}
+
+- (uint)currentDeletions {
+    return self.totalDeletions - self.previousDeletions;
+}
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -70,11 +89,22 @@
         for(NSDictionary *contributor in contributors) {
             if(![contributor[@"author"][@"login"] isEqualToString:self.gitHubUserName]) continue;
             uint newTotalCommits = [contributor[@"total"] intValue];
+            uint newTotalAdditions = 0;
+            uint newTotalDeletions = 0;
+            for(NSDictionary *week in contributor[@"weeks"]) {
+                newTotalAdditions += [week[@"a"] intValue];
+                newTotalDeletions += [week[@"d"] intValue];
+            }
+            //NSLog(@"Got %d additions and %d deletions", newTotalAdditions, newTotalDeletions);
             //if(newTotalCommits == self.totalCommits) return;
             self.totalCommits = newTotalCommits;
+            self.totalAdditions = newTotalAdditions;
+            self.totalDeletions = newTotalDeletions;
             //NSLog(@"Have total GitHub commits: %d -- current %d", self.totalCommits, self.currentCommits);
-            [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityGitHub object:self userInfo:@{@"totalCommits": @(self.totalCommits), @"currentCommits": @(self.currentCommits)}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityGitHub object:self userInfo:@{@"totalCommits": @(self.totalCommits), @"currentCommits": @(self.currentCommits), @"totalAdditions": @(self.totalAdditions), @"currentAdditions": @(self.currentAdditions), @"totalDeletions": @(self.totalDeletions), @"currentDeletions": @(self.currentDeletions)}];
             [[NSUserDefaults standardUserDefaults] setObject:@(self.totalCommits) forKey:@"totalGitHubCommits"];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalAdditions) forKey:@"totalGitHubAdditions"];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalDeletions) forKey:@"totalGitHubDeletions"];
         }
     }];
 }

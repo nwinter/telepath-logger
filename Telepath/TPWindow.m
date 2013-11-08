@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        [self setContentMaxSize:NSMakeSize(2480, 240)];
+        [self setContentMaxSize:NSMakeSize(2560, 240)];
     }
     return self;
 }

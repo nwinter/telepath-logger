@@ -20,5 +20,9 @@
 @interface TPTrackerGitHub : NSObject
 @property (readonly) uint currentCommits;
 @property (readonly) uint totalCommits;
+@property (readonly) uint currentAdditions;
+@property (readonly) uint totalAdditions;
+@property (readonly) uint currentDeletions;
+@property (readonly) uint totalDeletions;
 
 @end

@@ -282,7 +282,8 @@ NSString *VERSION = @"0.2.5";
     }   // end while: no frame yet
     
     // Convert frame to an NSImage
-    NSCIImageRep *imageRep = [NSCIImageRep imageRepWithCIImage:[CIImage imageWithCVImageBuffer:frame]];
+    CIImage *flippedImage = [self flipImage:[CIImage imageWithCVImageBuffer:frame]];
+    NSCIImageRep *imageRep = [NSCIImageRep imageRepWithCIImage:flippedImage];
     NSImage *image = [[[NSImage alloc] initWithSize:[imageRep size]] autorelease];
     [image addRepresentation:imageRep];
     CVBufferRelease(frame);  // Nick's addition. Maybe horribly unsafe or something, but was leaking crazy memory without this.
@@ -291,7 +292,17 @@ NSString *VERSION = @"0.2.5";
     return image;
 }
 
-
+- (CIImage *)flipImage:(CIImage *)image {
+    CIImage *resultImage = image;
+    CIFilter *flipFilter = [CIFilter filterWithName:@"CIAffineTransform"];
+    [flipFilter setValue:resultImage forKey:@"inputImage"];
+    NSAffineTransform *flipTransform = [NSAffineTransform transform];
+    [flipTransform scaleXBy:-1 yBy:1.0]; // horizontal flip
+    [flipTransform translateXBy:-1280 yBy:0];
+    [flipFilter setValue:flipTransform forKey:@"inputTransform"];
+    resultImage = [flipFilter valueForKey:@"outputImage"];
+    return resultImage;
+}
 
 
 /**

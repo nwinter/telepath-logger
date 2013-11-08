@@ -30,6 +30,8 @@
 	<string>Copyright © 2013 Nick Winter. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>ATSApplicationFontsPath</key>
+	<string>OpenSans-Regular.ttf</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

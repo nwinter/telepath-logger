@@ -119,6 +119,7 @@
 }
 
 /// Grab just the bottom middle of the source image.
+/// If we do this again, we should do it in ImageSnap with a CIFilter: http://stackoverflow.com/questions/4778119/horizontal-flip-of-a-frame-in-objective-c
 - (NSImage *)cropImage:(NSImage *)source toSize:(NSSize)size {
     NSImage *resultImage = [[NSImage alloc] initWithSize:size];
     [resultImage lockFocus];

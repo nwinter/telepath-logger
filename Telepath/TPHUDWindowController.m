@@ -29,6 +29,8 @@
 @property (weak) IBOutlet NSTextField *mouseMovementsField;
 @property (weak) IBOutlet NSTextField *windowSwitchesField;
 @property (weak) IBOutlet NSTextField *commitsField;
+@property (weak) IBOutlet NSTextField *additionsField;
+@property (weak) IBOutlet NSTextField *deletionsField;
 @property (weak) IBOutlet NSTextField *trellosSlainField;
 @property (weak) IBOutlet NSTextField *trellosRemainingField;
 @property (weak) IBOutlet NSTextField *buildsField;
@@ -43,6 +45,9 @@
 @property (weak) IBOutlet NSComboBox *activityBox;
 @property (weak) IBOutlet NSTextField *activityDetailField;
 
+// Affect Area
+@property (weak) IBOutlet NSTextField *songField;
+
 // Timelapse Progress Area (or is it Percentile Feedback Area?)
 @property (weak) IBOutlet WebView *percentileFeedbackView;
 
@@ -56,21 +61,22 @@
 
 @implementation TPHUDWindowController
 
-- (id)initWithWindow:(NSWindow *)window
-{
+- (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
-
+        [self.window setContentBorderThickness:0.0f forEdge:NSMinYEdge];
+        [self.window setContentBorderThickness:0.0f forEdge:NSMaxYEdge];
     }
     return self;
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
     [super windowDidLoad];
     [self.window setLevel:NSFloatingWindowLevel];
     [self.window setCollectionBehavior:NSWindowCollectionBehaviorStationary|NSWindowCollectionBehaviorCanJoinAllSpaces|NSWindowCollectionBehaviorFullScreenAuxiliary];
     [self.window becomeKeyWindow];
+    [self.window setOpaque:NO];
+    [self.window setBackgroundColor:[[self.window backgroundColor] colorWithAlphaComponent:0.75]];
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(onActivityKeyboard:) name:TPActivityKeyboard object:nil];
@@ -85,6 +91,8 @@
     [nc addObserver:self selector:@selector(onActivityEmail:) name:TPActivityEmail object:nil];
     [nc addObserver:self selector:@selector(onActivityWorkHours:) name:TPActivityWorkHours object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onSongChanged:) name:@"com.apple.iTunes.playerInfo" object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onSongChanged:) name:@"com.spotify.client.PlaybackStateChanged" object:nil];
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
 
     [self setUpActivityBox];
@@ -93,12 +101,38 @@
     NSView *clipView = [[[self.percentileFeedbackView.mainFrame frameView] documentView] superview];
     [clipView scaleUnitSquareToSize:NSMakeSize(0.45, 0.55)];
     [clipView setNeedsDisplay:YES];
+    [self setFonts];
 }
 
-- (void)dealloc
-{
+- (NSArray *)allSubviewsOfView:(NSView *)view {
+    NSMutableArray *allSubviews = [NSMutableArray arrayWithObject:view];
+    NSArray *subviews = [view subviews];
+    for (NSView *subview in subviews)
+        [allSubviews addObjectsFromArray:[self allSubviewsOfView:subview]];
+    return [allSubviews copy];
+}
+
+- (void)setFonts {
+    for(id view in [self allSubviewsOfView:self.window.contentView]) {
+        if(![view respondsToSelector:@selector(setFont:)]) continue;
+        NSFont *font = (NSFont *)[view font];
+        font = [NSFont fontWithName:@"OpenSans" size:font.pointSize];
+        [view setFont:(id)font];
+    }
+}
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (NSImage *)cropImage:(NSImage *)source toSize:(NSSize)size {
+    NSImage *resultImage = [[NSImage alloc] initWithSize:size];
+    [resultImage lockFocus];
+    [source drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect((source.size.width - size.width) / 2, 0, size.width, size.height) operation:NSCompositeSourceOver fraction:1];
+    [resultImage unlockFocus];
+    return resultImage;
+}
+
 
 - (void)onActivityKeyboard:(NSNotification *)note {
     [self.keystrokesField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentEvents"]]];
@@ -143,6 +177,10 @@
 
 - (void)onActivityGitHub:(NSNotification *)note {
     [self.commitsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentCommits"]]];
+    //[self.additionsField setStringValue:[NSString stringWithFormat:@"%@ ++", note.userInfo[@"currentAdditions"]]];
+    //[self.deletionsField setStringValue:[NSString stringWithFormat:@"%@ --", note.userInfo[@"currentDeletions"]]];
+    [self.additionsField setStringValue:[NSString stringWithFormat:@"%@ ++", @(57824)]];
+    [self.deletionsField setStringValue:[NSString stringWithFormat:@"%@ --", @(13800)]];
 }
 
 - (void)onActivityTrello:(NSNotification *)note {
@@ -175,6 +213,14 @@
 
 - (void)onWorkChanged:(NSNotification *)note {
     [self.percentileFeedbackView reload:nil];
+}
+
+- (void)onSongChanged:(NSNotification *)note {
+    NSString *artist = note.userInfo[@"Artist"];
+    NSString *song = note.userInfo[@"Name"];
+    BOOL playing = [note.userInfo[@"Player State"] isEqualToString:@"Playing"];
+    self.songField.hidden = !playing;
+    [self.songField setStringValue:[NSString stringWithFormat:@"%@ - %@", artist, song]];
 }
 
 - (void)updateTime:(NSTimer *)timer {

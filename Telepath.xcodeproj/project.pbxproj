@@ -14,6 +14,7 @@
 		C8A1949417DD145100C0F7FC /* TPTrackerBrunchBuilds.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */; };
 		C8A1949717DD272E00C0F7FC /* TPTrackerEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */; };
 		C8A1949C17DEDDCC00C0F7FC /* TPTrackerWorkHours.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */; };
+		C8A4BF9B182D2ABD00964845 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8A4BF9A182D2ABD00964845 /* OpenSans-Regular.ttf */; };
 		C8AF4BF518221E870007835F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8AF4BF418221E870007835F /* ApplicationServices.framework */; };
 		C8E5F62717E8186E00129E0D /* TPTrackerScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */; };
 		C8E9BEE417EEA27100049672 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E9BEE317EEA27100049672 /* WebKit.framework */; };
@@ -68,6 +69,7 @@
 		C8A1949617DD272E00C0F7FC /* TPTrackerEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerEmail.m; sourceTree = "<group>"; };
 		C8A1949A17DEDDCC00C0F7FC /* TPTrackerWorkHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerWorkHours.h; sourceTree = "<group>"; };
 		C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerWorkHours.m; sourceTree = "<group>"; };
+		C8A4BF9A182D2ABD00964845 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		C8AF4BF418221E870007835F /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		C8E5F62517E8186E00129E0D /* TPTrackerScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerScreen.h; sourceTree = "<group>"; };
 		C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerScreen.m; sourceTree = "<group>"; };
@@ -145,6 +147,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8A4BF99182D2AA200964845 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C8A4BF9A182D2ABD00964845 /* OpenSans-Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		C8EBF4B7182BF44D00D33029 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +226,7 @@
 				C8F632B717D26D8B00330DFD /* TPUtilities.m */,
 				C8F6327317D1053800330DFD /* Images.xcassets */,
 				C8EBF4B7182BF44D00D33029 /* Sounds */,
+				C8A4BF99182D2AA200964845 /* Fonts */,
 				C8F6327017D1053800330DFD /* Telepath.xcdatamodeld */,
 				C8F6325F17D1053800330DFD /* Supporting Files */,
 			);
@@ -372,6 +383,7 @@
 				C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */,
 				C8EBF4B6182BF43D00D33029 /* listen.wav in Resources */,
 				C8F6327417D1053800330DFD /* Images.xcassets in Resources */,
+				C8A4BF9B182D2ABD00964845 /* OpenSans-Regular.ttf in Resources */,
 				C8F6329517D1074200330DFD /* TPHUDWindowController.xib in Resources */,
 				C8F6326917D1053800330DFD /* Credits.rtf in Resources */,
 				C8F6326F17D1053800330DFD /* MainMenu.xib in Resources */,
