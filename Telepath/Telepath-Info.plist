@@ -31,7 +31,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>ATSApplicationFontsPath</key>
-	<string>OpenSans-Regular.ttf</string>
+	<string>Fonts</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

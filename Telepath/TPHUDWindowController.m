@@ -46,6 +46,7 @@
 @property (weak) IBOutlet NSTextField *activityDetailField;
 
 // Affect Area
+@property (weak) IBOutlet NSTextField *artistField;
 @property (weak) IBOutlet NSTextField *songField;
 
 // Timelapse Progress Area (or is it Percentile Feedback Area?)
@@ -99,9 +100,11 @@
     self.tracker = [TPTracker new];
     [self.percentileFeedbackView setMainFrameURL:@"http://www.nickwinter.net/codecombat-stats?just_graph=1"];
     NSView *clipView = [[[self.percentileFeedbackView.mainFrame frameView] documentView] superview];
-    [clipView scaleUnitSquareToSize:NSMakeSize(0.45, 0.55)];
+    [clipView scaleUnitSquareToSize:NSMakeSize(0.586, 0.586)];
     [clipView setNeedsDisplay:YES];
     [self setFonts];
+    [self.artistField setHidden:YES];
+    [self.songField setHidden:YES];
 }
 
 - (NSArray *)allSubviewsOfView:(NSView *)view {
@@ -116,7 +119,15 @@
     for(id view in [self allSubviewsOfView:self.window.contentView]) {
         if(![view respondsToSelector:@selector(setFont:)]) continue;
         NSFont *font = (NSFont *)[view font];
-        font = [NSFont fontWithName:@"OpenSans" size:font.pointSize];
+        font = [NSFont fontWithName:@"OpenSans-Light" size:font.pointSize];
+        if([view respondsToSelector:@selector(textColor)]) {
+            NSColor *color = ((NSTextField *)view).textColor;
+            NSLog(@"Color: %@", color);
+            if([color isEqual:[NSColor keyboardFocusIndicatorColor]])
+                [view setTextColor:[NSColor colorWithWhite:0.35 alpha:1.0]];
+            if(font.pointSize < 24 && ![color isEqual:[NSColor controlTextColor]])
+                font = [NSFont fontWithName:@"OpenSans-Semibold" size:font.pointSize];
+        }
         [view setFont:(id)font];
     }
 }
@@ -177,10 +188,10 @@
 
 - (void)onActivityGitHub:(NSNotification *)note {
     [self.commitsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentCommits"]]];
-    //[self.additionsField setStringValue:[NSString stringWithFormat:@"%@ ++", note.userInfo[@"currentAdditions"]]];
-    //[self.deletionsField setStringValue:[NSString stringWithFormat:@"%@ --", note.userInfo[@"currentDeletions"]]];
-    [self.additionsField setStringValue:[NSString stringWithFormat:@"%@ ++", @(57824)]];
-    [self.deletionsField setStringValue:[NSString stringWithFormat:@"%@ --", @(13800)]];
+    //[self.additionsField setStringValue:[NSString stringWithFormat:@"%@++", note.userInfo[@"currentAdditions"]]];
+    //[self.deletionsField setStringValue:[NSString stringWithFormat:@"%@--", note.userInfo[@"currentDeletions"]]];
+    [self.additionsField setStringValue:[NSString stringWithFormat:@"%@++", @(57824)]];
+    [self.deletionsField setStringValue:[NSString stringWithFormat:@"%@--", @(13800)]];
 }
 
 - (void)onActivityTrello:(NSNotification *)note {
@@ -219,8 +230,9 @@
     NSString *artist = note.userInfo[@"Artist"];
     NSString *song = note.userInfo[@"Name"];
     BOOL playing = [note.userInfo[@"Player State"] isEqualToString:@"Playing"];
-    self.songField.hidden = !playing;
-    [self.songField setStringValue:[NSString stringWithFormat:@"%@ - %@", artist, song]];
+    self.songField.hidden = self.artistField.hidden = !playing;
+    [self.artistField setStringValue:artist];
+    [self.songField setStringValue:song];
 }
 
 - (void)updateTime:(NSTimer *)timer {
@@ -229,8 +241,10 @@
     [dayFormat setDateFormat:@"EEEE"];
     NSDateFormatter *timeFormat = [NSDateFormatter new];
     [timeFormat setDateFormat:@"HH:mm"];
-    [self.timeLabel setStringValue:[timeFormat stringFromDate:date]];
     [self.dayLabel setStringValue:[dayFormat stringFromDate:date]];
+    [self.timeLabel setStringValue:[timeFormat stringFromDate:date]];
+    //[self.dayLabel setStringValue:@"Wednesday"];
+    //[self.timeLabel setStringValue:@"10:32"];
 }
 
 - (void)setUpActivityBox {
