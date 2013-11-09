@@ -48,6 +48,12 @@
 // Affect Area
 @property (weak) IBOutlet NSTextField *artistField;
 @property (weak) IBOutlet NSTextField *songField;
+@property (weak) IBOutlet NSTextField *happinessField;
+@property (weak) IBOutlet NSTextField *energyField;
+@property (weak) IBOutlet NSTextField *healthField;
+@property (weak) IBOutlet NSTextField *happinessLabel;
+@property (weak) IBOutlet NSTextField *energyLabel;
+@property (weak) IBOutlet NSTextField *healthLabel;
 
 // Timelapse Progress Area (or is it Percentile Feedback Area?)
 @property (weak) IBOutlet WebView *percentileFeedbackView;
@@ -91,9 +97,13 @@
     [nc addObserver:self selector:@selector(onActivityBrunchBuild:) name:TPActivityBrunchBuild object:nil];
     [nc addObserver:self selector:@selector(onActivityEmail:) name:TPActivityEmail object:nil];
     [nc addObserver:self selector:@selector(onActivityWorkHours:) name:TPActivityWorkHours object:nil];
+    [nc addObserver:self selector:@selector(onActivityHappiness:) name:TPActivityHappiness object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onWorkChanged:) name:@"net.nickwinter.Telepath.WorkChanged" object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onActivityHappiness:) name:@"net.nickwinter.Telepath.HappinessChanged" object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onSongChanged:) name:@"com.apple.iTunes.playerInfo" object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onSongChanged:) name:@"com.spotify.client.PlaybackStateChanged" object:nil];
+    //[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onAnyDistributedNotification:) name:nil object:nil];
+
     self.timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
 
     [self setUpActivityBox];
@@ -105,6 +115,7 @@
     [self setFonts];
     [self.artistField setHidden:YES];
     [self.songField setHidden:YES];
+    [self onActivityHappiness:nil];  // Hide these fields until a ping happens
 }
 
 - (NSArray *)allSubviewsOfView:(NSView *)view {
@@ -116,15 +127,15 @@
 }
 
 - (void)setFonts {
+    NSColor *textColor = [NSColor colorWithWhite:0.35 alpha:1.0];
     for(id view in [self allSubviewsOfView:self.window.contentView]) {
         if(![view respondsToSelector:@selector(setFont:)]) continue;
         NSFont *font = (NSFont *)[view font];
         font = [NSFont fontWithName:@"OpenSans-Light" size:font.pointSize];
         if([view respondsToSelector:@selector(textColor)]) {
             NSColor *color = ((NSTextField *)view).textColor;
-            NSLog(@"Color: %@", color);
             if([color isEqual:[NSColor keyboardFocusIndicatorColor]])
-                [view setTextColor:[NSColor colorWithWhite:0.35 alpha:1.0]];
+                [view setTextColor:textColor];
             if(font.pointSize < 24 && ![color isEqual:[NSColor controlTextColor]])
                 font = [NSFont fontWithName:@"OpenSans-Semibold" size:font.pointSize];
         }
@@ -151,7 +162,7 @@
     BOOL down = [event[1] isEqualToString:@"keyDown"];
     if(down) {
         NSInteger fontSize = [note.userInfo[@"isText"] boolValue] ? 24 : 13;
-        NSAttributedString *newText = [[NSAttributedString alloc] initWithString:event[2] attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:fontSize]}];
+        NSAttributedString *newText = [[NSAttributedString alloc] initWithString:event[2] attributes:@{NSFontAttributeName: [NSFont fontWithName:@"OpenSans-Semibold" size:fontSize], NSForegroundColorAttributeName: [NSColor colorWithWhite:0.35 alpha:1.0]}];
         [self.recentKeysView.textStorage appendAttributedString:newText];
         NSInteger length = [self.recentKeysView.textStorage length];
         if(length > 500)
@@ -188,10 +199,10 @@
 
 - (void)onActivityGitHub:(NSNotification *)note {
     [self.commitsField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"currentCommits"]]];
-    //[self.additionsField setStringValue:[NSString stringWithFormat:@"%@++", note.userInfo[@"currentAdditions"]]];
-    //[self.deletionsField setStringValue:[NSString stringWithFormat:@"%@--", note.userInfo[@"currentDeletions"]]];
-    [self.additionsField setStringValue:[NSString stringWithFormat:@"%@++", @(57824)]];
-    [self.deletionsField setStringValue:[NSString stringWithFormat:@"%@--", @(13800)]];
+    [self.additionsField setStringValue:[NSString stringWithFormat:@"%@++", note.userInfo[@"currentAdditions"]]];
+    [self.deletionsField setStringValue:[NSString stringWithFormat:@"%@--", note.userInfo[@"currentDeletions"]]];
+    //[self.additionsField setStringValue:[NSString stringWithFormat:@"%@++", @(57824)]];
+    //[self.deletionsField setStringValue:[NSString stringWithFormat:@"%@--", @(13800)]];
 }
 
 - (void)onActivityTrello:(NSNotification *)note {
@@ -222,6 +233,34 @@
     }
 }
 
+- (void)onActivityHappiness:(NSNotification *)note {
+    self.happinessField.alphaValue = self.energyField.alphaValue = self.healthField.alphaValue = 1.0;
+    self.happinessLabel.alphaValue = self.energyLabel.alphaValue = self.healthLabel.alphaValue = 1.0;
+    NSTimeInterval fadeDuration = 10 * 60;
+    if(!note)
+        fadeDuration = 1.0;
+    else if(note.userInfo[@"happiness"]) {
+        [self.happinessField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"happiness"]]];
+        [self.energyField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"energy"]]];
+        [self.healthField setStringValue:[NSString stringWithFormat:@"%@", note.userInfo[@"health"]]];
+        fadeDuration = 1.5 * 60 * 60;
+    }
+    else {
+        [self.happinessField setStringValue:@"?"];
+        [self.energyField setStringValue:@"?"];
+        [self.healthField setStringValue:@"?"];
+    }
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:fadeDuration];
+    [[self.happinessField animator] setAlphaValue:0.0];
+    [[self.energyField animator] setAlphaValue:0.0];
+    [[self.healthField animator] setAlphaValue:0.0];
+    [[self.happinessLabel animator] setAlphaValue:0.0];
+    [[self.energyLabel animator] setAlphaValue:0.0];
+    [[self.healthLabel animator] setAlphaValue:0.0];
+    [NSAnimationContext endGrouping];
+}
+
 - (void)onWorkChanged:(NSNotification *)note {
     [self.percentileFeedbackView reload:nil];
 }
@@ -233,6 +272,10 @@
     self.songField.hidden = self.artistField.hidden = !playing;
     [self.artistField setStringValue:artist];
     [self.songField setStringValue:song];
+}
+
+- (void)onAnyDistributedNotification:(NSNotification *)note {
+    NSLog(@"<%p>%s: object: %@ name: %@ userInfo: %@", self, __PRETTY_FUNCTION__, note.object, note.name, note.userInfo);
 }
 
 - (void)updateTime:(NSTimer *)timer {

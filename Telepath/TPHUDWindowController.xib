@@ -21,6 +21,12 @@
                 <outlet property="dayHoursLabel" destination="wS1-yd-pg2" id="uUp-cu-UgX"/>
                 <outlet property="dayLabel" destination="L3G-cs-qnm" id="wHe-mq-1rD"/>
                 <outlet property="deletionsField" destination="1y3-F1-E1h" id="ob8-AF-yHX"/>
+                <outlet property="energyField" destination="SaV-pF-5PY" id="dsb-2y-8T9"/>
+                <outlet property="energyLabel" destination="Wtm-dH-4sP" id="p6m-80-XZ9"/>
+                <outlet property="happinessField" destination="ukS-vt-VHT" id="Fbo-eb-BV1"/>
+                <outlet property="happinessLabel" destination="dvn-kg-6Ph" id="Pqg-Sd-Ldj"/>
+                <outlet property="healthField" destination="ZOW-CG-PkI" id="eWR-ks-rH7"/>
+                <outlet property="healthLabel" destination="q3k-Nm-EVn" id="2un-Gi-KZd"/>
                 <outlet property="keystrokesField" destination="F8f-eb-LhJ" id="34k-iT-nka"/>
                 <outlet property="mouseMovementsField" destination="fGa-Sk-bph" id="Gvd-8M-2BH"/>
                 <outlet property="percentileFeedbackView" destination="6S4-3T-fzt" id="L1V-pT-JI6"/>
@@ -45,7 +51,7 @@
             <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="2491" height="240"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
-            <value key="minSize" type="size" width="2480" height="240"/>
+            <value key="minSize" type="size" width="2560" height="240"/>
             <value key="maxSize" type="size" width="2560" height="240"/>
             <view key="contentView" id="xgf-Fb-N1q">
                 <rect key="frame" x="0.0" y="0.0" width="2491" height="240"/>
@@ -327,10 +333,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L5t-Kp-xoN">
-                                    <rect key="frame" x="0.0" y="209" width="204" height="44"/>
+                                    <rect key="frame" x="0.0" y="209" width="204" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Window" id="o8R-Zj-fb1">
-                                        <font key="font" size="36" name="LucidaGrande"/>
+                                        <font key="font" size="28" name="LucidaGrande"/>
                                         <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
@@ -361,11 +367,11 @@
                                             <textView drawsBackground="NO" importsGraphics="NO" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="LkJ-er-0Dt">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="193"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" white="0.34662979014598544" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <size key="minSize" width="200" height="193"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
-                                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="insertionPointColor" white="0.3466297901" alpha="1" colorSpace="calibratedWhite"/>
                                                 <size key="minSize" width="200" height="193"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                             </textView>
@@ -393,7 +399,7 @@
                             <constraint firstItem="B4o-mL-HhF" firstAttribute="width" secondItem="FeV-Hr-1Aa" secondAttribute="width" id="dJP-WO-gou"/>
                             <constraint firstAttribute="width" constant="200" id="gms-nQ-jxK"/>
                             <constraint firstAttribute="centerX" secondItem="B4o-mL-HhF" secondAttribute="centerX" id="hS4-st-bqB"/>
-                            <constraint firstItem="L5t-Kp-xoN" firstAttribute="top" secondItem="FeV-Hr-1Aa" secondAttribute="top" constant="-10" id="jy3-xn-8Jz"/>
+                            <constraint firstItem="L5t-Kp-xoN" firstAttribute="top" secondItem="FeV-Hr-1Aa" secondAttribute="top" id="jy3-xn-8Jz"/>
                             <constraint firstAttribute="trailing" secondItem="h2K-lD-4dt" secondAttribute="trailing" id="l2q-3t-loM"/>
                             <constraint firstItem="Lxe-Xg-OWG" firstAttribute="leading" secondItem="FeV-Hr-1Aa" secondAttribute="leading" id="tPe-Gk-m2y"/>
                             <constraint firstAttribute="width" secondItem="L5t-Kp-xoN" secondAttribute="width" id="tUH-rE-U3d"/>

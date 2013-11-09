@@ -18,27 +18,31 @@
 @property NSMutableArray *images;
 @property NSTimeInterval lastSnapshotTime;
 
-/// Whether our camera has a session going.
+/// Whether our camera has a session going and we have a timer for it.
 @property BOOL started;
+
+/// Whether we've stopped our camera session because we're in screensaver (but still have our timer).
+@property BOOL screensaver;
 
 @end
 
 @implementation TPTrackerCamera
 
-- (id)initWithRecordingInterval:(NSTimeInterval)recordingInterval andPreviewInterval:(NSTimeInterval)previewInterval
-{
+- (id)initWithRecordingInterval:(NSTimeInterval)recordingInterval andPreviewInterval:(NSTimeInterval)previewInterval {
     self = [super init];
     if (self) {
         self.lastSnapshotTime = now();
         self.previewInterval = previewInterval;  // Starts recording
         self.recordingInterval = recordingInterval;  // Starts recording
         self.cropRatio = 0.6;
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreensaverStart:) name:@"com.apple.screensaver.didstart" object:nil];
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreensaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
     }
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
     [self stopCamera];
 }
 
@@ -78,19 +82,34 @@
     self.started = NO;
 }
 
+- (void)onScreensaverStart:(NSNotification *)note {
+    NSLog(@"Screensaver entered; stopping camera.");
+    self.screensaver = YES;
+    [self.camera stopSession];
+}
+
+- (void)onScreensaverStop:(NSNotification *)note {
+    NSLog(@"Screensaver exited; restarting camera.");
+    self.screensaver = NO;
+    [self.camera startSession:[ImageSnap defaultVideoDevice]];
+}
+
 - (void)takeSnapshot:(NSTimer *)timer {
     NSTimeInterval t = now();
+    NSTimeInterval countdown = self.recordingInterval - (t - self.lastSnapshotTime);
+    BOOL saveSnapshot = countdown <= 0 || ![self.images count];
+    if(saveSnapshot)
+        self.lastSnapshotTime = t;
+    if(self.screensaver) return;
     if(!self.started)
         [self.camera startSession:[ImageSnap defaultVideoDevice]];
     NSImage *image = [self.camera snapshot];
     if(!image) return;
     static int snapshotsTaken = 0;
     ++snapshotsTaken;
-    NSTimeInterval countdown = self.recordingInterval - (t - self.lastSnapshotTime);
-    if(countdown <= 0 || ![self.images count]) {
+    if(saveSnapshot) {
         //NSImage *savedImage = [self cropImage:image toSize:NSMakeSize(image.size.width * self.cropRatio, image.size.height * self.cropRatio)];
         NSImage *savedImage = image;
-        self.lastSnapshotTime = t;
         [self.images addObject:savedImage];
         if([self.images count] > 3)
             [self.images removeObjectAtIndex:0];

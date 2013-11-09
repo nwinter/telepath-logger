@@ -22,6 +22,7 @@ extern NSString * const TPActivityBrunchBuild;
 extern NSString * const TPActivityEmail;
 extern NSString * const TPActivityWorkHours;
 extern NSString * const TPActivityScreen;
+extern NSString * const TPActivityHappiness;
 
 @interface TPTracker : NSObject
 

@@ -392,37 +392,37 @@ NSString *VERSION = @"0.2.5";
 	}
     
 	
-	// Decompressed video output
-	verbose( "\tCreating QTCaptureDecompressedVideoOutput...");
-	mCaptureDecompressedVideoOutput = [[QTCaptureDecompressedVideoOutput alloc] init];
-	[mCaptureDecompressedVideoOutput setDelegate:self];
-	verbose( "Done.\n" );
-	if (![mCaptureSession addOutput:mCaptureDecompressedVideoOutput error:&error]) {
-		error( "\tCould not create decompressed output.\n");
-        [mCaptureSession release];
-        [mCaptureDeviceInput release];
-        [mCaptureDecompressedVideoOutput release];
-        mCaptureSession = nil;
-        mCaptureDeviceInput = nil;
-        mCaptureDecompressedVideoOutput = nil;
-		return NO;
-	}
-
-//	// Preview video output
-//	verbose( "\tCreating QTCaptureVideoPreviewOutput...");
-//	mCaptureVideoPreviewOutput = [[QTCaptureVideoPreviewOutput alloc] init];
-//	[mCaptureVideoPreviewOutput setDelegate:self];
+//	// Decompressed video output
+//	verbose( "\tCreating QTCaptureDecompressedVideoOutput...");
+//	mCaptureDecompressedVideoOutput = [[QTCaptureDecompressedVideoOutput alloc] init];
+//	[mCaptureDecompressedVideoOutput setDelegate:self];
 //	verbose( "Done.\n" );
-//	if (![mCaptureSession addOutput:mCaptureVideoPreviewOutput error:&error]) {
+//	if (![mCaptureSession addOutput:mCaptureDecompressedVideoOutput error:&error]) {
 //		error( "\tCould not create decompressed output.\n");
 //        [mCaptureSession release];
 //        [mCaptureDeviceInput release];
-//        [mCaptureVideoPreviewOutput release];
+//        [mCaptureDecompressedVideoOutput release];
 //        mCaptureSession = nil;
 //        mCaptureDeviceInput = nil;
-//        mCaptureVideoPreviewOutput = nil;
+//        mCaptureDecompressedVideoOutput = nil;
 //		return NO;
 //	}
+
+	// Preview video output
+	verbose( "\tCreating QTCaptureVideoPreviewOutput...");
+	mCaptureVideoPreviewOutput = [[QTCaptureVideoPreviewOutput alloc] init];
+	[mCaptureVideoPreviewOutput setDelegate:self];
+	verbose( "Done.\n" );
+	if (![mCaptureSession addOutput:mCaptureVideoPreviewOutput error:&error]) {
+		error( "\tCould not create preview output.\n");
+        [mCaptureSession release];
+        [mCaptureDeviceInput release];
+        [mCaptureVideoPreviewOutput release];
+        mCaptureSession = nil;
+        mCaptureDeviceInput = nil;
+        mCaptureVideoPreviewOutput = nil;
+		return NO;
+	}
     
     // Clear old image?
 	verbose("\tEntering synchronized block to clear memory...");

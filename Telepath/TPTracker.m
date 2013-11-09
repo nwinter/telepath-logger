@@ -19,6 +19,7 @@
 #import "TPTrackerEmail.h"
 #import "TPTrackerWorkHours.h"
 #import "TPTrackerScreen.h"
+#import "TPTrackerHappiness.h"
 #import "ImageSnap.h"
 
 @interface TPTracker ()
@@ -35,6 +36,7 @@
 @property TPTrackerEmail *trackerEmail;
 @property TPTrackerWorkHours *trackerWorkHours;
 @property TPTrackerScreen *trackerScreen;
+@property TPTrackerHappiness *trackerHappiness;
 
 /* Event logging */
 @property uint previousEvents;
@@ -63,6 +65,7 @@ NSString * const TPActivityBrunchBuild = @"TPActivityBrunchBuild";
 NSString * const TPActivityEmail = @"TPActivityEmail";
 NSString * const TPActivityWorkHours = @"TPActivityWorkHours";
 NSString * const TPActivityScreen = @"TPActivityScreen";
+NSString * const TPActivityHappiness = @"TPActivityHappiness";
 
 /// We'll switch log files this often.
 const double FILE_SWITCH_INTERVAL = 1 * 24 * 60 * 60;
@@ -98,6 +101,7 @@ const double FILE_WRITE_INTERVAL = 1;
         self.trackerEmail = [TPTrackerEmail new];
         self.trackerWorkHours = [TPTrackerWorkHours new];
         self.trackerScreen = [[TPTrackerScreen alloc] initWithRecordingInterval:cameraRecordingInterval];
+        self.trackerHappiness = [[TPTrackerHappiness alloc] initWithPingInterval:3 * 60 * 60];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalEvents"];
         [nc addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {

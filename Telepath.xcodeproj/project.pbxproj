@@ -10,6 +10,8 @@
 		C83B4D1817E11B57009F5DCC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83B4D1717E11B57009F5DCC /* QuartzCore.framework */; };
 		C83B4D1A17E11B81009F5DCC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83B4D1917E11B81009F5DCC /* IOKit.framework */; };
 		C85A13B2182D4A2200FF3EDA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = C85A13B1182D4A2200FF3EDA /* Fonts */; };
+		C85A13B4182D7EB100FF3EDA /* fez-chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C85A13B3182D7EB100FF3EDA /* fez-chime.mp3 */; };
+		C85A13B7182D80E100FF3EDA /* TPTrackerHappiness.m in Sources */ = {isa = PBXBuildFile; fileRef = C85A13B6182D80E100FF3EDA /* TPTrackerHappiness.m */; };
 		C8A1948E17DCE37700C0F7FC /* TPTrackerGitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */; };
 		C8A1949117DCF84100C0F7FC /* TPTrackerTrello.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949017DCF84100C0F7FC /* TPTrackerTrello.m */; };
 		C8A1949417DD145100C0F7FC /* TPTrackerBrunchBuilds.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A1949317DD145100C0F7FC /* TPTrackerBrunchBuilds.m */; };
@@ -60,6 +62,9 @@
 		C83B4D1717E11B57009F5DCC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C83B4D1917E11B81009F5DCC /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		C85A13B1182D4A2200FF3EDA /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		C85A13B3182D7EB100FF3EDA /* fez-chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fez-chime.mp3"; sourceTree = "<group>"; };
+		C85A13B5182D80E100FF3EDA /* TPTrackerHappiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerHappiness.h; sourceTree = "<group>"; };
+		C85A13B6182D80E100FF3EDA /* TPTrackerHappiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerHappiness.m; sourceTree = "<group>"; };
 		C8A1948C17DCE37700C0F7FC /* TPTrackerGitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerGitHub.h; sourceTree = "<group>"; };
 		C8A1948D17DCE37700C0F7FC /* TPTrackerGitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTrackerGitHub.m; sourceTree = "<group>"; };
 		C8A1948F17DCF84100C0F7FC /* TPTrackerTrello.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTrackerTrello.h; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 		C8EBF4B7182BF44D00D33029 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C85A13B3182D7EB100FF3EDA /* fez-chime.mp3 */,
 				C8EBF4B5182BF43D00D33029 /* listen.wav */,
 			);
 			name = Sounds;
@@ -291,6 +297,8 @@
 				C8A1949B17DEDDCC00C0F7FC /* TPTrackerWorkHours.m */,
 				C8E5F62517E8186E00129E0D /* TPTrackerScreen.h */,
 				C8E5F62617E8186E00129E0D /* TPTrackerScreen.m */,
+				C85A13B5182D80E100FF3EDA /* TPTrackerHappiness.h */,
+				C85A13B6182D80E100FF3EDA /* TPTrackerHappiness.m */,
 			);
 			name = Trackers;
 			sourceTree = "<group>";
@@ -375,6 +383,7 @@
 				C8F6326317D1053800330DFD /* InfoPlist.strings in Resources */,
 				C8EBF4B6182BF43D00D33029 /* listen.wav in Resources */,
 				C8F6327417D1053800330DFD /* Images.xcassets in Resources */,
+				C85A13B4182D7EB100FF3EDA /* fez-chime.mp3 in Resources */,
 				C8F6329517D1074200330DFD /* TPHUDWindowController.xib in Resources */,
 				C8F6326917D1053800330DFD /* Credits.rtf in Resources */,
 				C85A13B2182D4A2200FF3EDA /* Fonts in Resources */,
@@ -404,6 +413,7 @@
 				C8F6326517D1053800330DFD /* main.m in Sources */,
 				C8A1949717DD272E00C0F7FC /* TPTrackerEmail.m in Sources */,
 				C8A1949C17DEDDCC00C0F7FC /* TPTrackerWorkHours.m in Sources */,
+				C85A13B7182D80E100FF3EDA /* TPTrackerHappiness.m in Sources */,
 				C8F632B417D26BC400330DFD /* TPTrackerCamera.m in Sources */,
 				C8F632B817D26D8B00330DFD /* TPUtilities.m in Sources */,
 				C8A1948E17DCE37700C0F7FC /* TPTrackerGitHub.m in Sources */,
