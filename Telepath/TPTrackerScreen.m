@@ -63,7 +63,8 @@
 
 - (NSImage *)captureScreen {
     NSImage *windowImage = nil;
-    if(self.currentWindowID && self.currentWindowRect.origin.y + self.currentWindowRect.size.height > 10) {
+    //if(self.currentWindowID) NSLog(@"Capturing screen with %@?", NSStringFromRect(self.currentWindowRect));
+    if(self.currentWindowID && (self.currentWindowRect.origin.y + self.currentWindowRect.size.height > 10 || self.currentWindowRect.origin.x < -10)) {
         CGImageRef windowImageRef = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, self.currentWindowID, kCGWindowImageDefault);
         windowImage = [self imageFromCGImageRef:windowImageRef];
     }
@@ -80,7 +81,7 @@
 
 - (void)drawPIP:(NSImage *)pip onto:(NSImage *)screen {
     [screen lockFocus];
-    [pip drawAtPoint:CGPointMake(2560 - pip.size.width, 240) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1];
+    [pip drawAtPoint:CGPointMake(2560 - pip.size.width + 40, 200) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1];
     [screen unlockFocus];
 }
 
