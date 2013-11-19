@@ -10,3 +10,5 @@ See also these blog posts:
 [Telepath Logger Now Open Source](http://blog.nickwinter.net/telepath-logger-now-open-source)
 
 [Upcoming Maniac Week](http://blog.nickwinter.net/upcoming-maniac-week)
+
+[The 120-Hour Workweek - Epic Coding Time-Lapse](http://blog.nickwinter.net/the-120-hour-workweek-epic-coding-time-lapse)
