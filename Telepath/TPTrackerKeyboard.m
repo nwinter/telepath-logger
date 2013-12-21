@@ -135,6 +135,10 @@
     }
 }
 
+/**
+ * http://blog.elliottcable.name/posts/useful_unicode.xhtml
+ */
+
 - (NSString *) eventCharacters: (NSEvent *) e {
     switch (e.keyCode) {
         case 36: return @"↩";
