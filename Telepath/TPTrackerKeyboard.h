@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TPTrackerKeyboard : NSObject
-@property NSArray *modifierKeys;
+@property (nonatomic, strong) NSArray *modifierKeys;
 @property (readonly) uint currentEvents;
 @property (readonly) uint totalEvents;
 @end
