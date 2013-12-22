@@ -31,13 +31,13 @@
     self = [super init];
     if (self) {
         self.recentCharacters = [NSMutableString new];
-        [self loadModifierKeys];
+        
         [self loadReallyBadStuff];
         
         NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
         BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
         NSLog(@"Accessibility is enabled? %d", accessibilityEnabled);
-
+        
         uint logMask = (NSKeyDownMask|NSKeyUpMask|NSFlagsChangedMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousKeyboardEvents"];
@@ -70,18 +70,18 @@
         [self.veryBad appendFormat:@"%C", (unichar)([[self.reallyBadStuff lastObject] characterAtIndex:i] - 1)];
 }
 
-- (void)loadModifierKeys {
-    // http://blog.elliottcable.name/posts/useful_unicode.xhtml
-    self.modifierKeys =
-    @[[NSMutableArray arrayWithObjects:@"⇪", @(NSAlphaShiftKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"⇧", @(NSShiftKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"⌃", @(NSControlKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"⌥", @(NSAlternateKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"⌘", @(NSCommandKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<numlock>", @(NSNumericPadKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<help>", @(NSHelpKeyMask), @(NO), nil],
-      [NSMutableArray arrayWithObjects:@"<fn>", @(NSFunctionKeyMask), @(NO), nil],
-      ];
+- (NSArray *) modifierKeys {
+    if (!_modifierKeys) {
+        _modifierKeys =  @[@[@"⇪", @(NSAlphaShiftKeyMask), @(NO)].mutableCopy,
+                           @[@"⇧", @(NSShiftKeyMask), @(NO)].mutableCopy,
+                           @[@"⌃", @(NSControlKeyMask), @(NO)].mutableCopy,
+                           @[@"⌥", @(NSAlternateKeyMask), @(NO)].mutableCopy,
+                           @[@"⌘", @(NSCommandKeyMask), @(NO)].mutableCopy,
+                           @[@"<numlock>", @(NSNumericPadKeyMask), @(NO)].mutableCopy,
+                           @[@"<help>", @(NSHelpKeyMask), @(NO)].mutableCopy,
+                           @[@"<fn>", @(NSFunctionKeyMask), @(NO)].mutableCopy];
+    }
+    return _modifierKeys;
 }
 
 - (void)checkReallyBadStuff {
@@ -114,37 +114,17 @@
 - (void)onKeyEvent:(NSEvent *)e up:(BOOL)keyUp {
 	NSMutableArray *event = [NSMutableArray array];
 	[event addObject:@(now())];
-	if(keyUp)
-		[event addObject:@"keyUp"];
-	else
-		[event addObject:@"keyDown"];
-	
-    BOOL isText = NO;
-	int code = [e keyCode];
-	if(code == 36)
-		[event addObject:@"↩"];
-	else if (code == 48)
-		[event addObject:@"⇥"];
-	else if (code == 49)
-		[event addObject:@" "];
-	else if (code == 51)
-		[event addObject:@"⌫"];
-	else if (code == 53)
-		[event addObject:@"␛"];
-	else if (code == 123)
-		[event addObject:@"←"];
-	else if (code == 124)
-		[event addObject:@"→"];
-	else if (code == 125)
-		[event addObject:@"↓"];
-	else if (code == 126)
-		[event addObject:@"↑"];
-	else {
-		[event addObject:[e characters]];
-        isText = YES;
-    }
+    [event addObject:keyUp ? @"keyUp" : @"keyDown"];
+    [event addObject:[self eventCharacters: e]];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self userInfo:@{@"event": event, @"totalEvents": @(++self.totalEvents), @"currentEvents": @(self.currentEvents), @"isText": @(isText)}];
+    NSNumber *isText = @([event.lastObject isEqualToString:e.characters]);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityKeyboard object:self
+                                                      userInfo:@{@"event": event,
+                                                                 @"totalEvents": @(++self.totalEvents),
+                                                                 @"currentEvents": @(self.currentEvents),
+                                                                 @"isText": isText}];
+    
     [[NSUserDefaults standardUserDefaults] setObject:@(self.totalEvents) forKey:@"totalKeyboardEvents"];
     
     if(keyUp) {
@@ -152,6 +132,25 @@
         if([self.recentCharacters length] > 100)
             [self.recentCharacters deleteCharactersInRange:NSMakeRange(0, 1)];
         [self checkReallyBadStuff];
+    }
+}
+
+/**
+ * http://blog.elliottcable.name/posts/useful_unicode.xhtml
+ */
+
+- (NSString *) eventCharacters: (NSEvent *) e {
+    switch (e.keyCode) {
+        case 36: return @"↩";
+        case 48: return @"⇥";
+        case 49: return @" ";
+        case 51: return @"⌫";
+        case 53: return @"␛";
+        case 123: return @"←";
+        case 124: return @"→";
+        case 125: return @"↓";
+        case 126: return @"↑";
+        default: return e.characters;
     }
 }
 
