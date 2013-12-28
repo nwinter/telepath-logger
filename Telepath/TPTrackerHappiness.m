@@ -13,6 +13,9 @@
 @property NSTimer *pingTimer;
 @property BOOL started;
 
+/// Whether we've in screensaver (and might not want to play a noise if it's late at night).
+@property BOOL screensaver;
+
 @end
 
 @implementation TPTrackerHappiness
@@ -22,6 +25,8 @@
     if(self) {
         srand48(time(0));
         self.pingInterval = pingInterval;  // Starts ping.
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreensaverStart:) name:@"com.apple.screensaver.didstart" object:nil];
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreensaverStop:) name:@"com.apple.screensaver.didstop" object:nil];
     }
     return self;
 }
@@ -48,10 +53,25 @@
 }
 
 - (void)ping:(NSTimer *)timer {
-    NSSound *chime = [NSSound soundNamed:@"fez-chime"];
-    [chime play];
+    NSDateFormatter *timeOfDay = [[NSDateFormatter alloc] init];
+    [timeOfDay setDateFormat:@"HHmm"];
+    int currentTime = [[timeOfDay stringFromDate:[NSDate date]] intValue];
+    if(!self.screensaver || (830 < currentTime && currentTime < 2300)) {
+        NSSound *chime = [NSSound soundNamed:@"fez-chime"];
+        [chime play];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:TPActivityHappiness object:self userInfo:@{}];
     [self start];
+}
+
+- (void)onScreensaverStart:(NSNotification *)note {
+    NSLog(@"Screensaver Start");
+    self.screensaver = YES;
+}
+
+- (void)onScreensaverStop:(NSNotification *)note {
+    NSLog(@"Screensaver Stop");
+    self.screensaver = NO;
 }
 
 @end

@@ -39,7 +39,7 @@
         [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityClearTotals object:nil queue:nil usingBlock:^(NSNotification *note) {
             [[NSUserDefaults standardUserDefaults] setObject:@(self.totalCommits) forKey:@"previousGitHubCommits"];
             [[NSUserDefaults standardUserDefaults] setObject:@(self.totalAdditions) forKey:@"previousGitHubAdditions"];
-            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalDeletions) forKey:@"previousGitHubCDeletions"];
+            [[NSUserDefaults standardUserDefaults] setObject:@(self.totalDeletions) forKey:@"previousGitHubDeletions"];
             self.previousCommits = self.totalCommits;
             self.previousAdditions = self.totalAdditions;
             self.previousDeletions = self.totalDeletions;
