@@ -13,6 +13,6 @@
 #import <Foundation/Foundation.h>
 
 @interface TPTrackerEmail : NSObject
-@property (readonly) uint unreadEmails;
+@property (readonly) NSInteger unreadEmails;
 
 @end

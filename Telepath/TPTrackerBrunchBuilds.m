@@ -10,8 +10,8 @@
 #import "TPTracker.h"
 
 @interface TPTrackerBrunchBuilds ()
-@property uint previousEvents;
-@property (readwrite) uint totalEvents;
+@property NSInteger previousEvents;
+@property (readwrite) NSInteger totalEvents;
 
 @end
 
@@ -33,7 +33,7 @@
     return self;
 }
 
-- (uint)currentEvents {
+- (NSInteger)currentEvents {
     return self.totalEvents - self.previousEvents;
 }
 

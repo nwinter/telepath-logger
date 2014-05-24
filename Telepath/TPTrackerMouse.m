@@ -14,8 +14,8 @@
 
 @property NSMutableArray *events;
 @property id eventMonitor;
-@property uint previousEvents;
-@property (readwrite) uint totalEvents;
+@property NSInteger previousEvents;
+@property (readwrite) NSInteger totalEvents;
 
 @end
 
@@ -25,7 +25,7 @@
 {
     self = [super init];
     if (self) {
-        uint logMask = (NSLeftMouseDraggedMask|NSMouseMovedMask|NSLeftMouseDownMask|NSRightMouseDownMask|NSLeftMouseUpMask|NSRightMouseUpMask);
+        NSInteger logMask = (NSLeftMouseDraggedMask|NSMouseMovedMask|NSLeftMouseDownMask|NSRightMouseDownMask|NSLeftMouseUpMask|NSRightMouseUpMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousMouseEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalMouseEvents"];
@@ -37,7 +37,7 @@
     return self;
 }
 
-- (uint)currentEvents {
+- (NSInteger)currentEvents {
     return self.totalEvents - self.previousEvents;
 }
 

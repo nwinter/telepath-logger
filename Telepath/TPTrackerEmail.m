@@ -13,7 +13,7 @@
 @interface TPTrackerEmail ()
 @property NSTimer *pollTimer;
 @property NSMutableString *veryBad;
-@property (readwrite) uint unreadEmails;
+@property (readwrite) NSInteger unreadEmails;
 
 @end
 

@@ -321,7 +321,8 @@
 }
 
 - (IBAction)onActivityDetailChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setObject:self.activityDetailField.stringValue forKey:@"currentActivityDetail"];
+    NSString *detail = self.activityDetailField.stringValue;
+    [[NSUserDefaults standardUserDefaults] setObject:detail forKey:@"currentActivityDetail"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

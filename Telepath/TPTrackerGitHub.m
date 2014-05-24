@@ -15,12 +15,12 @@
 @property NSString *gitHubUserName;
 @property NSString *gitHubRepo;
 @property NSString *gitHubToken;
-@property uint previousCommits;
-@property (readwrite) uint totalCommits;
-@property uint previousAdditions;
-@property (readwrite) uint totalAdditions;
-@property uint previousDeletions;
-@property (readwrite) uint totalDeletions;
+@property NSInteger previousCommits;
+@property (readwrite) NSInteger totalCommits;
+@property NSInteger previousAdditions;
+@property (readwrite) NSInteger totalAdditions;
+@property NSInteger previousDeletions;
+@property (readwrite) NSInteger totalDeletions;
 
 @end
 
@@ -60,15 +60,15 @@
     return self;
 }
 
-- (uint)currentCommits {
+- (NSInteger)currentCommits {
     return self.totalCommits - self.previousCommits;
 }
 
-- (uint)currentAdditions {
+- (NSInteger)currentAdditions {
     return self.totalAdditions - self.previousAdditions;
 }
 
-- (uint)currentDeletions {
+- (NSInteger)currentDeletions {
     return self.totalDeletions - self.previousDeletions;
 }
 
@@ -88,9 +88,9 @@
         //NSLog(@"Got %lu contributors: %@", [contributors count], contributors);
         for(NSDictionary *contributor in contributors) {
             if(![contributor[@"author"][@"login"] isEqualToString:self.gitHubUserName]) continue;
-            uint newTotalCommits = [contributor[@"total"] intValue];
-            uint newTotalAdditions = 0;
-            uint newTotalDeletions = 0;
+            NSInteger newTotalCommits = [contributor[@"total"] intValue];
+            NSInteger newTotalAdditions = 0;
+            NSInteger newTotalDeletions = 0;
             for(NSDictionary *week in contributor[@"weeks"]) {
                 newTotalAdditions += [week[@"a"] intValue];
                 newTotalDeletions += [week[@"d"] intValue];

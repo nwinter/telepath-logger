@@ -27,6 +27,8 @@
     return YES;
 }
 
-
+- (BOOL)isMovableByWindowBackground {
+    return YES;
+}
 
 @end

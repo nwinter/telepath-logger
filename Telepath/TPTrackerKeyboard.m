@@ -17,8 +17,8 @@
 @property NSArray *punctuation;
 @property NSMutableString *veryBad;
 @property id eventMonitor;
-@property uint previousEvents;
-@property (readwrite) uint totalEvents;
+@property NSInteger previousEvents;
+@property (readwrite) NSInteger totalEvents;
 
 @end
 
@@ -38,7 +38,7 @@
         BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
         NSLog(@"Accessibility is enabled? %d", accessibilityEnabled);
         
-        uint logMask = (NSKeyDownMask|NSKeyUpMask|NSFlagsChangedMask);
+        NSInteger logMask = (NSKeyDownMask|NSKeyUpMask|NSFlagsChangedMask);
         self.eventMonitor = [NSEvent addGlobalMonitorForEventsMatchingMask:logMask handler:^(NSEvent *e) { [self onInputEvent:e]; }];
         self.previousEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"previousKeyboardEvents"];
         self.totalEvents = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalKeyboardEvents"];
@@ -50,7 +50,7 @@
     return self;
 }
 
-- (uint)currentEvents {
+- (NSInteger)currentEvents {
     return self.totalEvents - self.previousEvents;
 }
 
@@ -66,7 +66,7 @@
     self.reallyBadStuff = [[contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@"\n"];
     self.punctuation = @[@" ", @",", @".", @";", @"?", @"!", @"'", @"\"", @"-", @"/", @"(", @")", @"[", @"]", @"\n"];
     self.veryBad = [NSMutableString string];
-    for(uint i = 0; i < [[self.reallyBadStuff lastObject] length]; ++i)
+    for(NSInteger i = 0; i < [[self.reallyBadStuff lastObject] length]; ++i)
         [self.veryBad appendFormat:@"%C", (unichar)([[self.reallyBadStuff lastObject] characterAtIndex:i] - 1)];
 }
 

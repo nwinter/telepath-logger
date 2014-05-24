@@ -17,8 +17,8 @@
 @property NSString *lastURL;
 @property NSTimeInterval lastWindowSwitch;
 @property NSTimer *windowSampleTimer;
-@property uint previousEvents;
-@property (readwrite) uint totalEvents;
+@property NSInteger previousEvents;
+@property (readwrite) NSInteger totalEvents;
 
 @end
 
@@ -43,7 +43,7 @@ const NSTimeInterval WINDOW_SAMPLE_RATE = 0.025;
     return self;
 }
 
-- (uint)currentEvents {
+- (NSInteger)currentEvents {
     return self.totalEvents - self.previousEvents;
 }
 

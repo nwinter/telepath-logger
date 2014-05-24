@@ -39,8 +39,8 @@
 @property TPTrackerHappiness *trackerHappiness;
 
 /* Event logging */
-@property uint previousEvents;
-@property (readwrite) uint totalEvents;
+@property NSInteger previousEvents;
+@property (readwrite) NSInteger totalEvents;
 @property NSMutableArray *eventsToLog;
 
 /* File state */
@@ -95,6 +95,7 @@ const double FILE_WRITE_INTERVAL = 1;
         //NSTimeInterval cameraPreviewInterval = 1 / 10.0;
         //NSTimeInterval cameraPreviewInterval = 1 / 3.0;
         NSTimeInterval cameraPreviewInterval = 1;  // / 3.0;
+        //NSLog(@"Would set up screen recording with recording interval %f and preview interval %f, but not recording screen right now", cameraRecordingInterval, cameraPreviewInterval);
         self.trackerCamera = [[TPTrackerCamera alloc] initWithRecordingInterval:cameraRecordingInterval andPreviewInterval:cameraPreviewInterval];
         self.trackerGitHub = [TPTrackerGitHub new];
         self.trackerTrello = [TPTrackerTrello new];
@@ -119,7 +120,7 @@ const double FILE_WRITE_INTERVAL = 1;
     return self;
 }
 
-- (uint)currentEvents {
+- (NSInteger)currentEvents {
     return self.totalEvents - self.previousEvents;
 }
 

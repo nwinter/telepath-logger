@@ -27,8 +27,8 @@
 #import <Foundation/Foundation.h>
 
 @interface TPTrackerTrello : NSObject
-@property (readonly) uint currentTrellosSlain;
-@property (readonly) uint totalTrellosSlain;
-@property (readonly) uint trellosAlive;
+@property (readonly) NSInteger currentTrellosSlain;
+@property (readonly) NSInteger totalTrellosSlain;
+@property (readonly) NSInteger trellosAlive;
 
 @end

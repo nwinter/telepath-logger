@@ -18,11 +18,11 @@
 #import <Foundation/Foundation.h>
 
 @interface TPTrackerGitHub : NSObject
-@property (readonly) uint currentCommits;
-@property (readonly) uint totalCommits;
-@property (readonly) uint currentAdditions;
-@property (readonly) uint totalAdditions;
-@property (readonly) uint currentDeletions;
-@property (readonly) uint totalDeletions;
+@property (readonly) NSInteger currentCommits;
+@property (readonly) NSInteger totalCommits;
+@property (readonly) NSInteger currentAdditions;
+@property (readonly) NSInteger totalAdditions;
+@property (readonly) NSInteger currentDeletions;
+@property (readonly) NSInteger totalDeletions;
 
 @end

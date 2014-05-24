@@ -24,7 +24,7 @@
     if(self) {
         self.recordingInterval = recordingInterval;  // Starts recording.
         [[NSNotificationCenter defaultCenter] addObserverForName:TPActivityWindow object:nil queue:nil usingBlock:^(NSNotification *note) {
-            self.currentWindowID = [note.userInfo[@"currentWindowID"] integerValue];
+            self.currentWindowID = (uint)[note.userInfo[@"currentWindowID"] integerValue];
             CGRect bounds;
             CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)note.userInfo[@"currentWindowBounds"], &bounds);
             self.currentWindowRect = bounds;

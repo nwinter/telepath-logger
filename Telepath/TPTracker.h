@@ -26,8 +26,8 @@ extern NSString * const TPActivityHappiness;
 
 @interface TPTracker : NSObject
 
-@property (readonly) uint currentEvents;
-@property (readonly) uint totalEvents;
+@property (readonly) NSInteger currentEvents;
+@property (readonly) NSInteger totalEvents;
 @property NSTimeInterval cameraRecordingInterval;
 
 @end

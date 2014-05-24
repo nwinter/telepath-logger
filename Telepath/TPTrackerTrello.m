@@ -18,9 +18,9 @@
 @property NSString *trelloApplicationKey;
 @property NSString *trelloApplicationSecret;
 @property NSString *trelloToken;
-@property uint previousTrellosSlain;
-@property (readwrite) uint totalTrellosSlain;
-@property (readwrite) uint trellosAlive;
+@property NSInteger previousTrellosSlain;
+@property (readwrite) NSInteger totalTrellosSlain;
+@property (readwrite) NSInteger trellosAlive;
 
 @end
 
@@ -61,7 +61,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (uint)currentTrellosSlain {
+- (NSInteger)currentTrellosSlain {
     return self.totalTrellosSlain - self.previousTrellosSlain;
 }
 
@@ -74,8 +74,8 @@
         NSArray *cards = arrayFromJSON(data);
         if(![cards count]) return;
         //NSLog(@"Got %lu cards: %@", [cards count], cards);
-        uint newTrellosAlive = 0;
-        uint newTrellosSlain = 0;
+        NSInteger newTrellosAlive = 0;
+        NSInteger newTrellosSlain = 0;
         for(NSDictionary *card in cards) {
             if(![self.trelloBoards containsObject:card[@"idBoard"]]) continue;
             BOOL done = [self.trelloDoneLists containsObject:card[@"idList"]];
