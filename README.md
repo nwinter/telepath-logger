@@ -3,7 +3,7 @@ telepath-logger
 
 A happy Mac keylogger for Quantified Self purposes. It also now serves as a time lapse heads-up-display thing. Really only I use this, so you'll want to either just use its code as inspiration or heavily tweak it for your purposes.
 
-![Time lapse HUD screengrab example.](http://cdn.sett.com/images/user/20131110195549977Z05fec6fb24b9722c773cb1057a10bc66_front.jpg)
+![Time lapse HUD screengrab example.](https://dl.dropboxusercontent.com/u/138899/GitHub%20Wikis/telepath-logger-example-screencrab.jpg)
 
 See also these blog posts:
 
