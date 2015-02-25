@@ -324,6 +324,13 @@
     NSString *detail = self.activityDetailField.stringValue;
     [[NSUserDefaults standardUserDefaults] setObject:detail forKey:@"currentActivityDetail"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+
+    //NSURL *url = [NSURL URLWithString:@"https://www.leftronic.com/customSend/"];
+    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    //request.HTTPMethod = @"POST";
+    //request.HTTPBody = [[NSString stringWithFormat:@"{\"accessKey\": \"some-access-key-string\", \"streamName\": \"some-stream-name\", \"point\": {\"label\": \"Nick: %@\"}}", detail] dataUsingEncoding:NSUTF8StringEncoding];
+    //NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:nil startImmediately:YES];
+    //if(!connection) NSLog(@"pfft");
 }
 
 - (IBAction)onRandomStatsClearClicked:(id)sender {
